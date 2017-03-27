@@ -59,6 +59,11 @@ class NeuralNetwork:
         elif type == 2: #logistic regression
             # Hypothesis using sigmoid: tf.div(1., 1. + tf.exp(tf.matmul(X, W)))
             self.hypothesis = tf.sigmoid(tf.add(tf.matmul(self.X, self.W), self.b))
+        elif type == 3: #softmax
+            # tf.nn.softmax computes softmax activations
+            # softmax = exp(logits) / reduce_sum(exp(logits), dim)
+            self.hypothesis = tf.nn.softmax(tf.matmul(self.X, self.W) + self.b)
+
         '''
         self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
         self.hypothesis = self.X * self.W + self.b
@@ -70,6 +75,9 @@ class NeuralNetwork:
             self.cost_function = tf.reduce_mean(tf.square(self.hypothesis - self.Y))
         elif type == 2: #logistic
             self.cost_function = -tf.reduce_mean(self.Y * tf.log(self.hypothesis) + (1 - self.Y) * tf.log(1 - self.hypothesis))
+        elif type == 3: #softmax
+            # Cross entropy cost/loss
+            self.cost_function = tf.reduce_mean(-tf.reduce_sum(self.Y * tf.log(self.hypothesis), axis=1))
 
     #[5] l_rate = 0.1 or 0.01 or 1e-5
     def set_optimizer(self, l_rate):
@@ -81,7 +89,9 @@ class NeuralNetwork:
         mp.show_list(self.costs)
 
     def show_weight(self):
-        if len(self.weights) is 1:
+        print('shape=', self.weights)
+
+        if len(self.weights[0]) is 1:
             mp = myplot.MyPlot()
             mp.set_labels('Step', 'Weight')
             mp.show_list(self.weights)
@@ -206,6 +216,19 @@ class NeuralNetwork:
         for item in answer:
             print(item)
         print('\n')
+
+    def test_argmax(self, x_data):
+        # Testing & One-hot encoding
+        for item in x_data:
+            print(item)
+        print('->')
+        answer = self.sess.run(self.hypothesis, feed_dict={self.X: x_data})
+        for item in answer:
+            print(item)
+
+        print(self.sess.run(tf.arg_max(answer, 1)))
+        print('\n')
+
 
     def recognition_rate(self, x_data, y_data):
         # Accuracy computation. True if hypothesis>0.5 else False
