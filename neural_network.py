@@ -81,18 +81,24 @@ class NeuralNetwork:
         mp.show_list(self.costs)
 
     def show_weight(self):
-        mp = myplot.MyPlot()
-        mp.set_labels('Step', 'Weight')
-        mp.show_list(self.weights)
+        if len(self.weights) is 1:
+            mp = myplot.MyPlot()
+            mp.set_labels('Step', 'Weight')
+            mp.show_list(self.weights)
+        else:
+            print('Cannot show the weight! Call print_weight method.')
 
     def print_weight(self):
         for item in self.weights:
             print(item)
 
     def show_bias(self):
-        mp = myplot.MyPlot()
-        mp.set_labels('Step', 'Bias')
-        mp.show_list(self.biases)
+        if len(self.weights) is 1:
+            mp = myplot.MyPlot()
+            mp.set_labels('Step', 'Bias')
+            mp.show_list(self.biases)
+        else:
+            print('Cannot show the bias! Call print_bias mehtod.')
 
     def print_bias(self):
         for item in self.biases:
@@ -210,6 +216,20 @@ class NeuralNetwork:
         str = '\nHypothesis:{}, \nAnswer (Y):{}, \nAccuracy:{}'.format(h, ans, a)
         self.logs.append(str)
         self.print_log()
+
+        '''
+        # Accuracy computation
+        # True if hypothesis>0.5 else False
+        predicted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
+        accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, self.Y), dtype=tf.float32))
+
+        # Accuracy report
+        h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: self.x_data, self.Y: self.y_data})
+        print(self.sess.run(self.hypothesis, feed_dict={self.X: [[0.176471,0.155779,0,0,0,0.052161,-0.952178,-0.733333]]}))
+
+        #print("\n예측한 값: ", h, "\nCorrect (Y): ", c, "\nAccuracy: ", a)
+
+        '''
 
 
 '''
