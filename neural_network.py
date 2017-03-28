@@ -62,7 +62,7 @@ class NeuralNetwork:
         elif type == 3: #softmax
             # tf.nn.softmax computes softmax activations
             # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-            self.hypothesis = tf.nn.softmax(tf.matmul(self.X, self.W) + self.b)
+            self.hypothesis = tf.nn.softmax(tf.add(tf.matmul(self.X, self.W), self.b))
 
         '''
         self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
