@@ -63,6 +63,11 @@ class NeuralNetwork:
             # tf.nn.softmax computes softmax activations
             # softmax = exp(logits) / reduce_sum(exp(logits), dim)
             self.hypothesis = tf.nn.softmax(tf.add(tf.matmul(self.X, self.W), self.b))
+        elif type == 4:
+            # tf.nn.softmax computes softmax activations
+            # softmax = exp(logits) / reduce_sum(exp(logits), dim)
+            logits = tf.matmul(self.X, self.W) + self.b
+            self.hypothesis = tf.nn.softmax(logits)
 
         '''
         self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
@@ -79,6 +84,7 @@ class NeuralNetwork:
             # Cross entropy cost/loss
             self.cost_function = tf.reduce_mean(-tf.reduce_sum(self.Y * tf.log(self.hypothesis), axis=1))
 
+
     #[5] l_rate = 0.1 or 0.01 or 1e-5
     def set_optimizer(self, l_rate):
         self.optimizer = tf.train.GradientDescentOptimizer(learning_rate=l_rate).minimize(self.cost_function)
@@ -87,6 +93,10 @@ class NeuralNetwork:
         mp = myplot.MyPlot()
         mp.set_labels('Step', 'Error')
         mp.show_list(self.costs)
+
+    def print_error(self):
+        for item in self.costs:
+            print(item)
 
     def show_weight(self):
         print('shape=', self.weights)
@@ -157,6 +167,11 @@ class NeuralNetwork:
                 self.do_step_processing(x_data, y_data)
 
         print('\nDone!\n')
+
+    def load_file(self, afile):
+        f2b = File2Buffer()
+        f2b.file_load(afile)
+        return f2b.x_data, f2b.y_data
 
     def learn_from_file(self, afile, total_loop, check_step):
         f2b = File2Buffer()
@@ -229,7 +244,13 @@ class NeuralNetwork:
         print(self.sess.run(tf.arg_max(answer, 1)))
         print('\n')
 
+    def recognition_rate(self, x_data, y_data):
+        correct_prediction = tf.equal(tf.argmax(self.hypothesis, 1), tf.argmax(self.Y_one_hot, 1)) # !!! Y_one_hot은 파생 클래스에 있는 것임!!
+        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+        acc = self.sess.run(accuracy, feed_dict={self.X: x_data, self.Y: y_data})
+        print("{:.2%}".format(acc))
 
+    '''
     def recognition_rate(self, x_data, y_data):
         # Accuracy computation. True if hypothesis>0.5 else False
         answer = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
@@ -239,20 +260,20 @@ class NeuralNetwork:
         str = '\nHypothesis:{}, \nAnswer (Y):{}, \nAccuracy:{}'.format(h, ans, a)
         self.logs.append(str)
         self.print_log()
+    '''
+    '''
+    # Accuracy computation
+    # True if hypothesis>0.5 else False
+    predicted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
+    accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, self.Y), dtype=tf.float32))
 
-        '''
-        # Accuracy computation
-        # True if hypothesis>0.5 else False
-        predicted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
-        accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, self.Y), dtype=tf.float32))
+    # Accuracy report
+    h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: self.x_data, self.Y: self.y_data})
+    print(self.sess.run(self.hypothesis, feed_dict={self.X: [[0.176471,0.155779,0,0,0,0.052161,-0.952178,-0.733333]]}))
 
-        # Accuracy report
-        h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: self.x_data, self.Y: self.y_data})
-        print(self.sess.run(self.hypothesis, feed_dict={self.X: [[0.176471,0.155779,0,0,0,0.052161,-0.952178,-0.733333]]}))
+    #print("\n예측한 값: ", h, "\nCorrect (Y): ", c, "\nAccuracy: ", a)
 
-        #print("\n예측한 값: ", h, "\nCorrect (Y): ", c, "\nAccuracy: ", a)
-
-        '''
+    '''
 
 
 '''
