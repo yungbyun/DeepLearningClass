@@ -1,8 +1,8 @@
 import tensorflow as tf
-from neural_network import NeuralNetwork
+from regression import Regression
+from mytype import MyType
 
-
-class SoftMaxClassifier (NeuralNetwork):
+class SoftMaxClassifier (Regression):
     Y_one_hot = None
 
     def set_placeholder(self, x_dim, y_dim):
@@ -17,7 +17,7 @@ class SoftMaxClassifier (NeuralNetwork):
 
     def set_cost_function(self, type):
         super().set_cost_function(type)
-        if type == 4:
+        if type == MyType.SOFTMAX_LOGITS:
             # Cross entropy cost/loss
             logits = tf.matmul(self.X, self.W) + self.b
             # !!!! 이런일이.. 아래 코드를 Base 클래스로 옮겨도 문제없다. NeuralNetwork에서 SoftMaxClassification의 멤버 Y_one_hot을 액세스한다!!!

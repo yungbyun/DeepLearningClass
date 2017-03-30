@@ -1,227 +1,105 @@
-from abc import abstractmethod
-from file2buffer import File2Buffer
-
-import numpy
 import tensorflow as tf
-import myplot
+from myplot import MyPlot
+from abc import abstractmethod
+from mytype import MyType
 import mytool
 
-
 class NeuralNetwork:
-    # placeholder
+    # place holders
     X = None
     Y = None
 
-    # weight & bias
-    W = None
-    b = None
-
-    # hypothesis, cost funcion, optimizer
     hypothesis = None
     cost_function = None
-    optimizer = None
+
+    sess = None
 
     costs = []
     weights = []
     biases = []
-    logs = []
 
-    sess = None
+    def set_placeholder(self, num_of_input, num_of_output):
+        self.X = tf.placeholder(tf.float32, [None, num_of_input])
+        self.Y = tf.placeholder(tf.float32, [None, num_of_output])
 
-    #[1]
-    def set_placeholder(self, x_dim, y_dim):
-        self.X = tf.placeholder(tf.float32, shape=[None, x_dim])
-        self.Y = tf.placeholder(tf.float32, shape=[None, y_dim])
-        '''
-        self.X = tf.placeholder("float")
-        self.Y = tf.placeholder("float")
-        self.X = tf.placeholder(tf.float32, shape=[None])
-        self.Y = tf.placeholder(tf.float32, shape=[None])
-        '''
+    def create_layer(self, previous_output, num_of_input, num_of_neuron, w_name, b_name, hypothesis_type):
+        W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name=w_name)
+        b = tf.Variable(tf.random_normal([num_of_neuron]), name=b_name)
 
-    #[2]
-    def set_weight_bias(self, x_dim, y_dim):
-        self.W = tf.Variable(tf.random_normal([x_dim, y_dim]), name='weight')
-        self.b = tf.Variable(tf.random_normal([y_dim]), name='bias')
-        '''
-        self.W = tf.Variable(numpy.random.randn(), "weight")
-        self.b = tf.Variable(numpy.random.randn(), "bias")
-        self.W = tf.Variable(tf.random_normal([1]), name='weight')
-        self.b = tf.Variable(tf.random_normal([1]), name='bias')
-        self.W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))  # 리스트로 리턴
-        self.b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))  # 리스트로 리턴
-        '''
+        if previous_output is None:
+            if hypothesis_type == MyType.LINEAR:
+                pass
+            elif hypothesis_type == MyType.LOGISTIC:
+                output = tf.sigmoid(tf.matmul(self.X, W) + b)
+        else:
+            if hypothesis_type == MyType.LINEAR:
+                pass
+            elif hypothesis_type == MyType.LOGISTIC:
+                output = tf.sigmoid(tf.matmul(previous_output, W) + b)
 
-    #[3]
-    def set_hypothesis(self, type):
-        if type == 1: #linear regression
-            self.hypothesis = tf.add(tf.matmul(self.X, self.W), self.b)
-        elif type == 2: #logistic regression
-            # Hypothesis using sigmoid: tf.div(1., 1. + tf.exp(tf.matmul(X, W)))
-            self.hypothesis = tf.sigmoid(tf.add(tf.matmul(self.X, self.W), self.b))
-        elif type == 3: #softmax
-            # tf.nn.softmax computes softmax activations
-            # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-            self.hypothesis = tf.nn.softmax(tf.add(tf.matmul(self.X, self.W), self.b))
-        elif type == 4:
-            # tf.nn.softmax computes softmax activations
-            # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-            logits = tf.matmul(self.X, self.W) + self.b
-            self.hypothesis = tf.nn.softmax(logits)
+        return W, b, output
 
-        '''
-        self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
-        self.hypothesis = self.X * self.W + self.b
-        '''
+    def set_hypothesis(self, h):
+        self.hypothesis = h
 
-    #[4]
     def set_cost_function(self, type):
-        if type == 1: #linear
+        if type == MyType.LINEAR: #linear
             self.cost_function = tf.reduce_mean(tf.square(self.hypothesis - self.Y))
-        elif type == 2: #logistic
+        elif type == MyType.LOGISTIC: #logistic
             self.cost_function = -tf.reduce_mean(self.Y * tf.log(self.hypothesis) + (1 - self.Y) * tf.log(1 - self.hypothesis))
-        elif type == 3: #softmax
+        elif type == MyType.SOFTMAX: #softmax
             # Cross entropy cost/loss
             self.cost_function = tf.reduce_mean(-tf.reduce_sum(self.Y * tf.log(self.hypothesis), axis=1))
 
-
-    #[5] l_rate = 0.1 or 0.01 or 1e-5
     def set_optimizer(self, l_rate):
-        self.optimizer = tf.train.GradientDescentOptimizer(learning_rate=l_rate).minimize(self.cost_function)
+        self.optimizer = tf.train.GradientDescentOptimizer(l_rate).minimize(self.cost_function)
+
+    def evaluate(self, xdata, ydata):
+        # Accuracy computation
+        # True if hypothesis>0.5 else False
+        predicted_casted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
+        accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted_casted, self.Y), dtype=tf.float32))
+
+        # Accuracy report
+        h, c, a = self.sess.run([self.hypothesis, predicted_casted, accuracy], feed_dict={self.X: xdata, self.Y: ydata})
+        print("\nPredicted(original):\n", h, "\nPredicted(casted):\n", c, "\nAccuracy: ", a)
+
+    @abstractmethod
+    def init_network(self):
+        pass
+
+    @abstractmethod
+    def my_log(self, i, xdata, ydata):
+        pass
+
+    def learn(self, x_data, y_data, total_loop, check_step):
+        tf.set_random_seed(777)
+
+        self.init_network()  # override
+
+        # Launch graph
+        self.sess = tf.Session()
+        # Initialize TensorFlow variables
+        self.sess.run(tf.global_variables_initializer())
+
+        print('\nStart learning.')
+        for i in range(total_loop + 1):  # 10,001
+            self.sess.run(self.optimizer, feed_dict={self.X: x_data, self.Y: y_data})
+
+            if i % check_step == 0:
+                mytool.print_dot()
+                err = self.sess.run(self.cost_function, feed_dict={self.X: x_data, self.Y: y_data})
+                self.costs.append(err)
+                # self.sess.run([W1, W2])
+                self.my_log(i, x_data, y_data)  # override
+
+        print('\nEnded!\n')
 
     def show_error(self):
-        mp = myplot.MyPlot()
+        mp = MyPlot()
         mp.set_labels('Step', 'Error')
         mp.show_list(self.costs)
 
-    def print_error(self):
-        for item in self.costs:
-            print(item)
-
-    def show_weight(self):
-        print('shape=', self.weights)
-
-        if len(self.weights[0]) is 1:
-            mp = myplot.MyPlot()
-            mp.set_labels('Step', 'Weight')
-            mp.show_list(self.weights)
-        else:
-            print('Cannot show the weight! Call print_weight method.')
-
-    def print_weight(self):
-        for item in self.weights:
-            print(item)
-
-    def show_bias(self):
-        if len(self.weights) is 1:
-            mp = myplot.MyPlot()
-            mp.set_labels('Step', 'Bias')
-            mp.show_list(self.biases)
-        else:
-            print('Cannot show the bias! Call print_bias mehtod.')
-
-    def print_bias(self):
-        for item in self.biases:
-            print(item)
-
-    def print_log(self):
-        for item in self.logs:
-            print(item)
-
-    @abstractmethod
-    def init(self):
-        pass
-
-    @abstractmethod
-    def my_log(self, x_data, y_data):
-        pass
-
-    def do_step_processing(self, x_data, y_data):
-        mytool.write('.')
-        self.weights.append(self.sess.run(self.W))
-        self.biases.append(self.sess.run(self.b))
-        err = self.sess.run(self.cost_function, feed_dict={self.X: x_data, self.Y: y_data})
-        self.costs.append(err)
-        self.my_log(x_data, y_data)  # Do whatever you want in this virtual function
-
-    def learn(self, x_data, y_data, total_loop, check_step):
-        tf.set_random_seed(777)  # for reproducibility, call before init method
-        self.init()
-
-        print('Start learning')
-
-        if self.sess is None:
-            # Launch the graph in a session.
-            self.sess = tf.Session()
-
-        # Initializes global variables in the graph.
-        self.sess.run(tf.global_variables_initializer())
-
-        # 옵티마이저로 학습(W, b를 수정)
-        # 지정한 간격으로 W, b를 리스트에 저장하고 그 때의 오류값도 리스트에 저장
-        # 원하는 것을 할 수 있도록
-        for step in range(total_loop + 1):
-            self.sess.run(self.optimizer, feed_dict={self.X: x_data, self.Y: y_data})
-
-            if step % check_step == 0:
-                self.do_step_processing(x_data, y_data)
-
-        print('\nDone!\n')
-
-    def load_file(self, afile):
-        f2b = File2Buffer()
-        f2b.file_load(afile)
-        return f2b.x_data, f2b.y_data
-
-    def learn_from_file(self, afile, total_loop, check_step):
-        f2b = File2Buffer()
-        f2b.file_load(afile)
-        #f2b.print_info()
-
-        self.learn(f2b.x_data, f2b.y_data, total_loop, check_step)
-
-    # 여러 (대용량) 파일들(파일 리스트)을 주고 학습하도록 시킴
-    def learn_batch(self, file_list, total_loop, check_step):
-        tf.set_random_seed(777)  # for reproducibility
-
-        filename_queue = tf.train.string_input_producer(file_list, shuffle=False, name='filename_queue')
-        reader = tf.TextLineReader()
-        key, value = reader.read(filename_queue)
-
-        # Default values, in case of empty columns. Also specifies the type of the
-        # decoded result.
-        record_defaults = [[0.], [0.], [0.], [0.]]
-        xy = tf.decode_csv(value, record_defaults=record_defaults)
-
-        # collect batches of csv in
-        train_x_batch, train_y_batch = tf.train.batch([xy[0:-1], xy[-1:]], batch_size=10)
-
-        self.init()
-
-        # Launch the graph in a session.
-        self.sess = tf.Session()
-        # Initializes global variables in the graph.
-        self.sess.run(tf.global_variables_initializer())
-
-        # Start populating the filename queue.
-        coord = tf.train.Coordinator()
-        threads = tf.train.start_queue_runners(sess=self.sess, coord=coord)
-
-        print('Start learning')
-
-        for step in range(total_loop + 1):
-            x_data, y_data = self.sess.run([train_x_batch, train_y_batch])
-            err_val = self.sess.run(self.optimizer, feed_dict={self.X: x_data, self.Y: y_data})
-
-            if step % check_step == 0: #10
-                self.do_step_processing(x_data, y_data)
-
-        print('\nDone!\n')
-
-        coord.request_stop()
-        coord.join(threads)
-
-    #predict, recognize, classify
     def test(self, x_data):
         # Test our model
         for item in x_data:
@@ -231,75 +109,3 @@ class NeuralNetwork:
         for item in answer:
             print(item)
         print('\n')
-
-    def test_argmax(self, x_data):
-        # Testing & One-hot encoding
-        for item in x_data:
-            print(item)
-        print('->')
-        answer = self.sess.run(self.hypothesis, feed_dict={self.X: x_data})
-        for item in answer:
-            print(item)
-
-        print(self.sess.run(tf.arg_max(answer, 1)))
-        print('\n')
-
-    def recognition_rate(self, x_data, y_data):
-        correct_prediction = tf.equal(tf.argmax(self.hypothesis, 1), tf.argmax(self.Y_one_hot, 1)) # !!! Y_one_hot은 파생 클래스에 있는 것임!!
-        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-        acc = self.sess.run(accuracy, feed_dict={self.X: x_data, self.Y: y_data})
-        print("{:.2%}".format(acc))
-
-    '''
-    def recognition_rate(self, x_data, y_data):
-        # Accuracy computation. True if hypothesis>0.5 else False
-        answer = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
-        accuracy = tf.reduce_mean(tf.cast(tf.equal(answer, self.Y), dtype=tf.float32))
-
-        h, ans, a = self.sess.run([self.hypothesis, answer, accuracy], feed_dict={self.X: x_data, self.Y: y_data})
-        str = '\nHypothesis:{}, \nAnswer (Y):{}, \nAccuracy:{}'.format(h, ans, a)
-        self.logs.append(str)
-        self.print_log()
-    '''
-    '''
-    # Accuracy computation
-    # True if hypothesis>0.5 else False
-    predicted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
-    accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, self.Y), dtype=tf.float32))
-
-    # Accuracy report
-    h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: self.x_data, self.Y: self.y_data})
-    print(self.sess.run(self.hypothesis, feed_dict={self.X: [[0.176471,0.155779,0,0,0,0.052161,-0.952178,-0.733333]]}))
-
-    #print("\n예측한 값: ", h, "\nCorrect (Y): ", c, "\nAccuracy: ", a)
-
-    '''
-
-
-'''
---- sigle variable
-x_data = [1]
-y_data = [1]
-
---- multi-variables
-x_data = [[1, 2],
-          [2, 3],
-          [3, 1],
-          [4, 3],
-          [5, 3],
-          [6, 2]]
-y_data = [[0],
-          [0],
-          [0],
-          [1],
-          [1],
-          [1]]
-
---- Single variable
-x_data = [1, 2, 3]
-y_data = [1, 2, 3]
-gildong.learn(x_data, y_data, 2000, 50)
-gildong.test([5, 2.5, 1.5, 3.5])
-gildong.learn([1, 2, 3, 4, 5], [2.1, 3.1, 4.1, 5.1, 6.1], 2000, 50)
-gildong.test([5, 2.5, 1.5, 3.5])
-'''
