@@ -140,7 +140,7 @@ class Regression:
 
     #
     def check_step_processing(self, i, x_data, y_data):
-        mytool.print_dot('.')
+        mytool.print_dot()
         self.weights.append(self.sess.run(self.W))
         self.biases.append(self.sess.run(self.b))
         err = self.sess.run(self.cost_function, feed_dict={self.X: x_data, self.Y: y_data})
@@ -152,7 +152,7 @@ class Regression:
 
         self.init_network()
 
-        print('\nStart learning...')
+        print('\nStart learning.')
 
         if self.sess is None:
             # Launch the graph in a session.

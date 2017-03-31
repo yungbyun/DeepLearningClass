@@ -8,7 +8,7 @@ class MyType(Enum):
     GRADIENTDESCENT = 5
     ADAM = 6
     LOGITS = 7
-
+    RELU = 8
 
 
 

@@ -23,3 +23,10 @@ def get_numpy_data():
     x_data = np.array([[0, 0], [0, 1], [1, 0], [1, 1]], dtype=np.float32)
     y_data = np.array([[0], [1], [1], [0]], dtype=np.float32)
     return x_data, y_data
+
+# x_col = len(x_data[0])
+# y_col = len(y_data[0])
+# print(x_col, y_col) # 3, 1
+
+
+

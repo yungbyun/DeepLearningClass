@@ -1,8 +1,8 @@
 import numpy as np
 
 '''
-가장 마지막에 있는 것이 출력(y)
-처음부터 그 전까지 모든 것이 데이터(x)인 데이터 파일을 읽어온다.
+가장 마지막에 있는 하나가 출력(y)
+출력을 제외한 앞의 모든 데이터가 입력(x)인 데이터 파일을 읽어온다.
 '''
 
 
@@ -34,6 +34,4 @@ class File2Buffer:
 
     def get_y_dimension(self):
         return self.y_dimension
-
-
 

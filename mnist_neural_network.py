@@ -1,17 +1,16 @@
 import tensorflow as tf
 import mytool
-from softmax import Softmax
 import matplotlib.pyplot as plt
+from neural_network import NeuralNetwork
 
 '''
-gildong = MnistClassifier()
 gildong.learn(3, 100) # epoch, partial_size
 gildong.evaluate() # for all test data
 gildong.classify_random_image() # classify a randomly selected image
 #gildong.show_errors()
-
 '''
-class MnistClassifier (Softmax):
+
+class MnistNeuralNetwork (NeuralNetwork):
     db = None
     learning_epoch = None #15
     size_of_segment = None #100
@@ -24,7 +23,7 @@ class MnistClassifier (Softmax):
         self.size_of_segment = partial
 
         self.db = self.load_mnist()
-        super().learn(self.db, self.learning_epoch, self.size_of_segment)
+        super().learn_with_segment(self.db, self.learning_epoch, self.size_of_segment)
 
     def get_number_of_segment(self):
         return int(self.db.train.num_examples / self.size_of_segment) #55,000 / 100
@@ -77,3 +76,4 @@ class MnistClassifier (Softmax):
         #result = self.sess.run(accuracy, feed_dict={self.X: db.test.images, self.Y: db.test.labels})
 
         print("Recognition rate :", result)
+
