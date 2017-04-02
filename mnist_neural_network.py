@@ -18,12 +18,12 @@ class MnistNeuralNetwork (NeuralNetwork):
     def load_mnist(self):
         return mytool.load_mnist()
 
-    def learn(self, epoch, partial):
+    def learn_mnist(self, epoch, partial):
         self.learning_epoch = epoch
         self.size_of_segment = partial
 
         self.db = self.load_mnist()
-        super().learn_with_segment(self.db, self.learning_epoch, self.size_of_segment)
+        self.learn_with_segment(self.db, self.learning_epoch, self.size_of_segment)
 
     def get_number_of_segment(self):
         return int(self.db.train.num_examples / self.size_of_segment) #55,000 / 100
@@ -44,11 +44,11 @@ class MnistNeuralNetwork (NeuralNetwork):
         label = self.db.test.labels[index:index+1]
         return self.sess.run(tf.arg_max(label, 1))
 
-    def classify(self, an_image):
-        category = self.sess.run(tf.argmax(self.hypothesis, 1), feed_dict={self.X: an_image})
+    def classify(self, mnist_image):
+        category = self.sess.run(tf.argmax(self.hypothesis, 1), feed_dict={self.X: mnist_image})
         return category
 
-    def classify_random_image(self):
+    def classify_random(self):
         index = mytool.get_random_int(self.db.test.num_examples)
 
         image = self.get_image(index)

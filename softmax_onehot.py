@@ -1,6 +1,7 @@
 from neural_network import NeuralNetwork
 from file2buffer import File2Buffer
 import tensorflow as tf
+from mytype import MyType
 
 class SoftmaxOnehot (NeuralNetwork):
     Y_one_hot = None
@@ -15,10 +16,16 @@ class SoftmaxOnehot (NeuralNetwork):
         self.Y_one_hot = tf.reshape(self.Y_one_hot, [-1, num_of_class]) #리스트 [[a],[b]] -> [a, b]
         print("reshape", self.Y_one_hot)
 
-
     def create_layer(self, previous_output, num_of_input, num_of_neuron, w_name='weight', b_name='bias'):
-        W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name=w_name)
-        b = tf.Variable(tf.random_normal([num_of_neuron]), name=b_name)
+        self.set_weight_initializer() ## a hole for you
+
+        if self.initializer == MyType.XAIVER:
+            # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
+            W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
+            b = tf.Variable(tf.random_normal([num_of_neuron]), name=b_name)
+        else : # if self.initializer == None:
+            W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name = w_name)
+            b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
 
         # tf.nn.softmax computes softmax activations
         # softmax = exp(logits) / reduce_sum(exp(logits), dim)

@@ -9,6 +9,7 @@ class NeuralNetwork:
     # place holders
     X = None
     Y = None
+    DO = None #place holer for dropout
 
     hypothesis = None
     cost_function = None
@@ -21,9 +22,26 @@ class NeuralNetwork:
     biases = []
     logs = []
 
+    initializer = None # for weights
+
+    @abstractmethod
+    def init_network(self):
+        pass
+
+    @abstractmethod
+    def my_log(self, i, xdata, ydata):
+        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata})
+        msg = "Step:{}, Error:{:.6f}".format(i, err)
+        self.logs.append(msg)
+
+    @abstractmethod
+    def set_weight_initializer(self):
+        pass
+
     def set_placeholder(self, num_of_input, num_of_output):
         self.X = tf.placeholder(tf.float32, [None, num_of_input])
         self.Y = tf.placeholder(tf.float32, [None, num_of_output])
+
         '''
         self.X = tf.placeholder("float")
         self.Y = tf.placeholder("float")
@@ -43,10 +61,26 @@ class NeuralNetwork:
         #self.b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))  # 리스트로 리턴
      '''
 
-    def create_layer(self, previous_output, num_of_input, num_of_neuron, hypothesis_type, w_name='weight', b_name='bias'):
-        W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name = w_name)
-        b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
+    def create_layer(self, previous_output, num_of_input, num_of_neuron, hypothesis_type, w_name, b_name):
+        self.set_weight_initializer() ## a hole for you
 
+        W, b = self.get_weight_bias(num_of_input, num_of_neuron, w_name, b_name)
+        output = self.get_neuron_output(previous_output, hypothesis_type, W, b)
+
+        return W, b, output
+
+    def get_weight_bias(self, num_of_input, num_of_neuron, w_name, b_name):
+        if self.initializer == MyType.XAIVER:
+            # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
+            W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
+            b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
+        else : # if self.initializer == None:
+            W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name = w_name)
+            b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
+
+        return W, b
+
+    def get_neuron_output(self, previous_output, hypothesis_type, W, b):
         output = None
         if previous_output is None: # if it is input layer
             if hypothesis_type == MyType.LINEAR:
@@ -78,7 +112,7 @@ class NeuralNetwork:
             elif hypothesis_type == MyType.RELU:
                 output = tf.nn.relu(tf.matmul(previous_output, W) + b)
 
-        return W, b, output
+        return output
 
         '''
         self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
@@ -147,16 +181,6 @@ class NeuralNetwork:
         for item in self.logs:
            print(item)
 
-    @abstractmethod
-    def init_network(self):
-        pass
-
-    @abstractmethod
-    def my_log(self, i, xdata, ydata):
-        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata})
-        msg = "Step:{}, Error:{:.6f}".format(i, err)
-        self.logs.append(msg)
-
     def check_step_processing(self, i, x_data, y_data):
         mytool.print_dot()
         #self.weights.append(self.sess.run(self.W))
@@ -179,7 +203,7 @@ class NeuralNetwork:
         # 옵티마이저로 학습(W, b를 수정)
         # 지정한 간격으로 W, b를 리스트에 저장하고 그 때의 오류값도 리스트에 저장
         # 원하는 것을 할 수 있도록
-        print('\nStart learning.')
+        print('\nStart learning:')
         for i in range(total_loop + 1):  # 10,001
             self.sess.run(self.optimizer, feed_dict={self.X: xdata, self.Y: ydata})
 
@@ -231,7 +255,7 @@ class NeuralNetwork:
         coord = tf.train.Coordinator()
         threads = tf.train.start_queue_runners(sess=self.sess, coord=coord)
 
-        print('\nStart learning.')
+        print('\nStart learning:')
 
         for step in range(total_loop + 1):
             x_data, y_data = self.sess.run([train_x_batch, train_y_batch])
@@ -255,7 +279,7 @@ class NeuralNetwork:
         # Initialize TensorFlow variables
         self.sess.run(tf.global_variables_initializer())
 
-        print("\nStart learning.")
+        print("\nStart learning:")
         # Training cycle
         for epoch in range(learning_epoch):
             err_4_all_data = 0
@@ -344,3 +368,10 @@ class NeuralNetwork:
         acc = self.sess.run(accuracy, feed_dict={self.X: x_data, self.Y: y_data})
         print("{:.2%}".format(acc))
 
+    def xavier(self):
+        self.initializer = MyType.XAIVER
+        print('Now, we are using Xavier initializer for weights.')
+
+    def dropout(self):
+        self.dropout = MyType.DROPOUT
+        print('Dropout occurs..')

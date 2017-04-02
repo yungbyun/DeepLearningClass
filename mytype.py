@@ -9,6 +9,8 @@ class MyType(Enum):
     ADAM = 6
     LOGITS = 7
     RELU = 8
+    XAIVER = 9
+    DROPOUT = 10
 
 
 
