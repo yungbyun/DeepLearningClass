@@ -64,10 +64,19 @@ class NeuralNetwork:
     def create_layer(self, previous_output, num_of_input, num_of_neuron, hypothesis_type, w_name, b_name):
         self.set_weight_initializer() ## a hole for you
 
-        W, b = self.get_weight_bias(num_of_input, num_of_neuron, w_name, b_name)
-        output = self.get_neuron_output(previous_output, hypothesis_type, W, b)
+        #W, b = self.get_weight_bias(num_of_input, num_of_neuron, w_name, b_name)
+        if self.initializer == MyType.XAIVER:
+            # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
+            W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
+            b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
+        else : # if self.initializer == None:
+            W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name = w_name)
+            b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
 
-        return W, b, output
+        #output = self.get_neuron_output(previous_output, hypothesis_type, W, b)
+        output = tf.add(tf.matmul(previous_output, W), b)
+
+        return output
 
     def get_weight_bias(self, num_of_input, num_of_neuron, w_name, b_name):
         if self.initializer == MyType.XAIVER:
@@ -96,8 +105,8 @@ class NeuralNetwork:
                 # softmax = exp(logits) / reduce_sum(exp(logits), dim)
                 logits = tf.matmul(self.X, W) + b
                 output = tf.nn.softmax(logits)
-            elif hypothesis_type == MyType.RELU:
-                output = tf.nn.relu(tf.add(tf.matmul(self.X, W), b))
+            #elif hypothesis_type == MyType.RELU:
+            #    output = tf.nn.relu(tf.add(tf.matmul(self.X, W), b))
 
         else: # if it is not input layer
             if hypothesis_type == MyType.LINEAR:
@@ -109,8 +118,8 @@ class NeuralNetwork:
             elif hypothesis_type == MyType.SOFTMAX_LOGITS:
                 logits = tf.matmul(previous_output, W) + b
                 output = tf.nn.softmax(logits)
-            elif hypothesis_type == MyType.RELU:
-                output = tf.nn.relu(tf.matmul(previous_output, W) + b)
+            #elif hypothesis_type == MyType.RELU:
+            #    output = tf.nn.relu(tf.matmul(previous_output, W) + b)
 
         return output
 

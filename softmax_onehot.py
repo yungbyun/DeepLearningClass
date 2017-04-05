@@ -29,8 +29,8 @@ class SoftmaxOnehot (NeuralNetwork):
 
         # tf.nn.softmax computes softmax activations
         # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-        logits = tf.matmul(self.X, W) + b
-        return W, b, logits
+        logits = tf.matmul(previous_output, W) + b
+        return logits
 
     def set_hypothesis(self, logits):
         self.hypothesis = tf.nn.softmax(logits)
