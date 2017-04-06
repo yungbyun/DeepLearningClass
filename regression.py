@@ -5,7 +5,7 @@ import numpy
 import tensorflow as tf
 import myplot
 import mytool
-from mytype import MyType
+from nntype import NNType
 
 class Regression:
     # placeholder
@@ -54,12 +54,12 @@ class Regression:
 
     #[3]
     def set_hypothesis(self, type):
-        if type == MyType.LINEAR: #linear regression
+        if type == NNType.SQUARE_MEAN: #linear regression
             self.hypothesis = tf.add(tf.matmul(self.X, self.W), self.b)
-        elif type == MyType.LOGISTIC: #logistic regression
+        elif type == NNType.LOGISTIC: #logistic regression
             # Hypothesis using sigmoid: tf.div(1., 1. + tf.exp(tf.matmul(X, W)))
             self.hypothesis = tf.sigmoid(tf.add(tf.matmul(self.X, self.W), self.b))
-        elif type == MyType.SOFTMAX: #softmax
+        elif type == NNType.SOFTMAX: #softmax
             # tf.nn.softmax computes softmax activations
             # softmax = exp(logits) / reduce_sum(exp(logits), dim)
             self.hypothesis = tf.nn.softmax(tf.add(tf.matmul(self.X, self.W), self.b))
@@ -76,11 +76,11 @@ class Regression:
 
     #[4]
     def set_cost_function(self, type):
-        if type == MyType.LINEAR: #linear
+        if type == NNType.SQUARE_MEAN: #linear
             self.cost_function = tf.reduce_mean(tf.square(self.hypothesis - self.Y))
-        elif type == MyType.LOGISTIC: #logistic
+        elif type == NNType.LOGISTIC: #logistic
             self.cost_function = -tf.reduce_mean(self.Y * tf.log(self.hypothesis) + (1 - self.Y) * tf.log(1 - self.hypothesis))
-        elif type == MyType.SOFTMAX: #softmax
+        elif type == NNType.SOFTMAX: #softmax
             # Cross entropy cost/loss
             self.cost_function = tf.reduce_mean(-tf.reduce_sum(self.Y * tf.log(self.hypothesis), axis=1))
 

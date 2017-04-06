@@ -1,7 +1,7 @@
 from neural_network import NeuralNetwork
 from file2buffer import File2Buffer
 import tensorflow as tf
-from mytype import MyType
+from nntype import NNType
 
 class SoftmaxOnehot (NeuralNetwork):
     Y_one_hot = None
@@ -19,7 +19,7 @@ class SoftmaxOnehot (NeuralNetwork):
     def create_layer(self, previous_output, num_of_input, num_of_neuron, w_name='weight', b_name='bias'):
         self.set_weight_initializer() ## a hole for you
 
-        if self.initializer == MyType.XAIVER:
+        if self.initializer == NNType.XAIVER:
             # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
             W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
             b = tf.Variable(tf.random_normal([num_of_neuron]), name=b_name)
@@ -42,7 +42,7 @@ class SoftmaxOnehot (NeuralNetwork):
 
     def evaluate(self, afile):
         f2b = File2Buffer()
-        f2b.file_load('data-04-zoo.csv')
+        f2b.file_load(afile)
 
         prediction = tf.argmax(self.hypothesis, 1)
         correct_prediction = tf.equal(prediction, tf.argmax(self.Y_one_hot, 1))

@@ -1,7 +1,7 @@
 import tensorflow as tf
 from abc import abstractmethod
 from myplot import MyPlot
-from mytype import MyType
+from nntype import NNType
 
 '''
 메인함수인 learn을 호출하기 전에 다음 가상함수 오버라이딩 해야 함
@@ -34,25 +34,25 @@ class Softmax:
         self.b = tf.Variable(tf.random_normal([num_of_neuron]))
 
     def set_hypothesis(self, type):
-        if type == MyType.SOFTMAX:
+        if type == NNType.SOFTMAX:
             # Hypothesis (using softmax)
             self.hypothesis = tf.nn.softmax(tf.matmul(self.X, self.W) + self.b)
-        elif type == MyType.LOGITS:
+        elif type == NNType.LOGITS:
             self.hypothesis = tf.matmul(self.X, self.W) + self.b
 
     def set_cost_function(self, type):
-        if type == MyType.SOFTMAX:
+        if type == NNType.SOFTMAX:
             self.cost_function = tf.reduce_mean(-tf.reduce_sum(self.Y * tf.log(self.hypothesis), axis=1))
-        elif type == MyType.SOFTMAX_LOGITS:
+        elif type == NNType.SOFTMAX_LOGITS:
             # hypothesis = logits -> tf.matmul(self.X, self.W) + self.b
             # self.hypothesis = tf.nn.softmax(tf.matmul(self.X, self.W) + self.b)
             # define cost/loss & optimizer
             self.cost_function = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(self.hypothesis, labels=self.Y))
 
     def set_optimizer(self, type, l_rate):
-        if type == MyType.GRADIENTDESCENT:
+        if type == NNType.GRADIENT_DESCENT:
             self.optimizer = tf.train.GradientDescentOptimizer(l_rate).minimize(self.cost_function)
-        elif type == MyType.ADAM:
+        elif type == NNType.ADAM:
             self.optimizer = tf.train.AdamOptimizer(learning_rate=l_rate).minimize(self.cost_function)
 
     @abstractmethod

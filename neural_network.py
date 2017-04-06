@@ -1,7 +1,7 @@
 import tensorflow as tf
 from myplot import MyPlot
 from abc import abstractmethod
-from mytype import MyType
+from nntype import NNType
 import mytool
 from file2buffer import File2Buffer
 
@@ -23,6 +23,11 @@ class NeuralNetwork:
     logs = []
 
     initializer = None # for weights
+
+    class_num_for_onehot = None
+
+    def onehot(self, class_num):
+        self.class_num_for_onehot = class_num
 
     @abstractmethod
     def init_network(self):
@@ -62,9 +67,10 @@ class NeuralNetwork:
      '''
 
     def create_layer(self, previous_output, num_of_input, num_of_neuron, w_name, b_name):
-        self.set_weight_initializer() ## a hole for you
 
-        if self.initializer == MyType.XAIVER:
+        self.set_weight_initializer() ## a hole for you to set an initializer
+
+        if self.initializer == NNType.XAIVER:
             # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
             W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
             b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
@@ -79,33 +85,35 @@ class NeuralNetwork:
     def get_neuron_output(self, previous_output, hypothesis_type, W, b):
         output = None
         if previous_output is None: # if it is input layer
-            if hypothesis_type == MyType.LINEAR:
+            if hypothesis_type == NNType.SQUARE_MEAN:
                 output = tf.add(tf.matmul(self.X, W), b)
-            elif hypothesis_type == MyType.LOGISTIC:
+            elif hypothesis_type == NNType.LOGISTIC:
                 output = tf.sigmoid(tf.add(tf.matmul(self.X, W), b))
-            elif hypothesis_type == MyType.SOFTMAX:  # softmax
+            elif hypothesis_type == NNType.SOFTMAX:  # softmax
                 # tf.nn.softmax computes softmax activations
                 # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-                output = tf.nn.softmax(tf.add(tf.matmul(self.X, W), b))
-            elif hypothesis_type == MyType.SOFTMAX_LOGITS:
+                logits = tf.add(tf.matmul(self.X, W), b)
+                output = tf.nn.softmax(logits)
+            elif hypothesis_type == NNType.SOFTMAX_LOGITS:
                 # tf.nn.softmax computes softmax activations
                 # softmax = exp(logits) / reduce_sum(exp(logits), dim)
                 logits = tf.matmul(self.X, W) + b
                 output = tf.nn.softmax(logits)
-            elif hypothesis_type == MyType.RELU:
+            elif hypothesis_type == NNType.RELU:
                 output = tf.nn.relu(tf.add(tf.matmul(self.X, W), b))
 
         else: # if it is not input layer
-            if hypothesis_type == MyType.LINEAR:
+            if hypothesis_type == NNType.SQUARE_MEAN:
                 output = tf.add(tf.matmul(previous_output, W), b)
-            elif hypothesis_type == MyType.LOGISTIC:
+            elif hypothesis_type == NNType.LOGISTIC:
                 output = tf.sigmoid(tf.matmul(previous_output, W) + b)
-            elif hypothesis_type == MyType.SOFTMAX:  # softmax
-                output = tf.nn.softmax(tf.add(tf.matmul(previous_output, W), b))
-            elif hypothesis_type == MyType.SOFTMAX_LOGITS:
+            elif hypothesis_type == NNType.SOFTMAX:  # softmax
                 logits = tf.add(tf.matmul(previous_output, W), b)
                 output = tf.nn.softmax(logits)
-            elif hypothesis_type == MyType.RELU:
+            elif hypothesis_type == NNType.SOFTMAX_LOGITS:
+                logits = tf.add(tf.matmul(previous_output, W), b)
+                output = tf.nn.softmax(logits)
+            elif hypothesis_type == NNType.RELU:
                 output = tf.nn.relu(tf.matmul(previous_output, W) + b)
 
         return output
@@ -119,23 +127,23 @@ class NeuralNetwork:
         self.hypothesis = h
 
     def set_cost_function(self, type):
-        if type == MyType.LINEAR: #linear
+        if type == NNType.SQUARE_MEAN: #linear
            self.cost_function = tf.reduce_mean(tf.square(self.hypothesis - self.Y))
-        elif type == MyType.LOGISTIC: #logistic
+        elif type == NNType.LOGISTIC:
            self.cost_function = -tf.reduce_mean(self.Y * tf.log(self.hypothesis) + (1 - self.Y) * tf.log(1 - self.hypothesis))
-        elif type == MyType.SOFTMAX: #softmax
-           # Cross entropy cost/loss
+        elif type == NNType.SOFTMAX:
+           # Cross entropy cost/loss function
            self.cost_function = tf.reduce_mean(-tf.reduce_sum(self.Y * tf.log(self.hypothesis), axis=1))
-        elif type == MyType.SOFTMAX_LOGITS:
-           # hypothesis = logits -> tf.matmul(self.X, self.W) + self.b
-           # self.hypothesis = tf.nn.softmax(tf.matmul(self.X, self.W) + self.b)
+        elif type == NNType.SOFTMAX_LOGITS:
+           # logits = tf.matmul(self.X, self.W) + self.b
+           # self.hypothesis = tf.nn.softmax(logits)
            # define cost/loss & optimizer
            self.cost_function = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(self.hypothesis, labels=self.Y))
 
     def set_optimizer(self, type, l_rate):
-        if type == MyType.GRADIENTDESCENT:
+        if type == NNType.GRADIENT_DESCENT:
            self.optimizer = tf.train.GradientDescentOptimizer(l_rate).minimize(self.cost_function)
-        elif type == MyType.ADAM:
+        elif type == NNType.ADAM:
            self.optimizer = tf.train.AdamOptimizer(learning_rate=l_rate).minimize(self.cost_function)
 
     def show_error(self):
@@ -352,22 +360,33 @@ class NeuralNetwork:
     def evaluate_sigmoid(self, xdata, ydata):
         # Accuracy computation
         # True if hypothesis > 0.5 else False
-        predicted_casted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
-        accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted_casted, self.Y), dtype=tf.float32))
+        predicted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
+        hit_record = tf.equal(predicted, self.Y)
+        accuracy = tf.reduce_mean(tf.cast(hit_record, dtype=tf.float32))
+
         # Accuracy report
-        h, c, a = self.sess.run([self.hypothesis, predicted_casted, accuracy], feed_dict={self.X: xdata, self.Y: ydata})
+        h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: xdata, self.Y: ydata})
         print("Predicted(original):\n", h, "\n\nPredicted(casted):\n", c, "\n\nAccuracy: {}".format(a * 100))
 
-    def evaluate_one_hot(self, x_data, y_data):
-        correct_prediction = tf.equal(tf.argmax(self.hypothesis, 1), tf.argmax(self.Y_one_hot, 1)) # !!! Y_one_hot은 파생 클래스에 있는 것임!!
+    def evaluate_file_one_hot(self, afile, class_num_for_one_hot):
+        f2b = File2Buffer()
+        f2b.file_load(afile)
+
+        Y_one_hot = tf.one_hot(self.Y, class_num_for_one_hot)  # one hot
+        print("one_hot original", Y_one_hot)
+        Y_onehot_reshaped = tf.reshape(Y_one_hot, [-1, class_num_for_one_hot])  # 리스트 [[a],[b]] -> [a, b]
+        print("one_hot reshaped", self.Y_one_hot)
+
+        prediction = tf.argmax(self.hypothesis, 1) #
+        correct_prediction = tf.equal(prediction, tf.argmax(Y_onehot_reshaped, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-        acc = self.sess.run(accuracy, feed_dict={self.X: x_data, self.Y: y_data})
-        print("{:.2%}".format(acc))
+        acc = self.sess.run(accuracy, feed_dict={self.X: f2b.x_data, self.Y: f2b.y_data})
+        print("Acc: {:.2%}".format(acc))
 
     def xavier(self):
-        self.initializer = MyType.XAIVER
+        self.initializer = NNType.XAIVER
         print('Now, we are using Xavier initializer for weights.')
 
     def dropout(self):
-        self.dropout = MyType.DROPOUT
+        self.dropout = NNType.DROPOUT
         print('Dropout occurs..')

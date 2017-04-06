@@ -1,6 +1,6 @@
 import tensorflow as tf
 from regression import Regression
-from mytype import MyType
+from nntype import NNType
 from neural_network import NeuralNetwork
 
 
