@@ -10,6 +10,7 @@ class SoftmaxOnehot (NeuralNetwork):
         self.X = tf.placeholder(tf.float32, [None, num_of_input])
         self.Y = tf.placeholder(tf.int32, [None, num_of_output])
 
+    #num_of_class: 7, if self.Y is 4 then generates [[0],[0],[0],[0],[1],[0],[0]] as Y_one_hot
     def set_one_hot(self, num_of_class):
         self.Y_one_hot = tf.one_hot(self.Y, num_of_class)  # one hot
         print("one_hot", self.Y_one_hot)
@@ -39,16 +40,16 @@ class SoftmaxOnehot (NeuralNetwork):
         cost_i = tf.nn.softmax_cross_entropy_with_logits(logits, labels=self.Y_one_hot)
         self.cost_function = tf.reduce_mean(cost_i)
 
-
     def evaluate(self, afile):
         f2b = File2Buffer()
         f2b.file_load(afile)
 
-        prediction = tf.argmax(self.hypothesis, 1)
-        correct_prediction = tf.equal(prediction, tf.argmax(self.Y_one_hot, 1))
-        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-        acc = self.sess.run(accuracy, feed_dict={self.X: f2b.x_data, self.Y: f2b.y_data})
-        print("Acc: {:.2%}".format(acc))
+        index_of_max_value = tf.argmax(self.hypothesis, 1)
+        hit_record = tf.equal(index_of_max_value, tf.argmax(self.Y_one_hot, 1))
+        recognition_rate = tf.reduce_mean(tf.cast(hit_record, tf.float32))
+        #
+        acc = self.sess.run(recognition_rate, feed_dict={self.X: f2b.x_data, self.Y: f2b.y_data})
+        print("Acc: {:.2%}".format(acc*100))
 
 
 

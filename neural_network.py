@@ -24,11 +24,6 @@ class NeuralNetwork:
 
     initializer = None # for weights
 
-    class_num_for_onehot = None
-
-    def onehot(self, class_num):
-        self.class_num_for_onehot = class_num
-
     @abstractmethod
     def init_network(self):
         pass
@@ -117,7 +112,6 @@ class NeuralNetwork:
                 output = tf.nn.relu(tf.matmul(previous_output, W) + b)
 
         return output
-
         '''
         self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
         self.hypothesis = self.X * self.W + self.b
@@ -138,7 +132,8 @@ class NeuralNetwork:
            # logits = tf.matmul(self.X, self.W) + self.b
            # self.hypothesis = tf.nn.softmax(logits)
            # define cost/loss & optimizer
-           self.cost_function = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(self.hypothesis, labels=self.Y))
+           cost_i = tf.nn.softmax_cross_entropy_with_logits(self.hypothesis, labels=self.Y)
+           self.cost_function = tf.reduce_mean(cost_i)
 
     def set_optimizer(self, type, l_rate):
         if type == NNType.GRADIENT_DESCENT:
@@ -187,8 +182,7 @@ class NeuralNetwork:
 
     def check_step_processing(self, i, x_data, y_data):
         mytool.print_dot()
-        #self.weights.append(self.sess.run(self.W))
-        #self.biases.append(self.sess.run(self.b))
+
         err = self.sess.run(self.cost_function, feed_dict={self.X: x_data, self.Y: y_data})
         self.costs.append(err)
 
@@ -227,7 +221,7 @@ class NeuralNetwork:
     def learn_with_file(self, afile, total_loop, check_step):
         f2b = File2Buffer()
         f2b.file_load(afile)
-        #f2b.print_info()
+        #print(f2b.x_data, f2b.y_data)
         self.learn(f2b.x_data, f2b.y_data, total_loop, check_step)
 
     # 여러 파일들(파일 리스트)을 주고 학습하도록 시킴
@@ -324,10 +318,15 @@ class NeuralNetwork:
         for item in x_data:
             print(item)
         print('->')
+
         answer = self.sess.run(self.hypothesis, feed_dict={self.X: x_data})
         for item in answer:
             print(item)
-        predicted_casted = tf.cast(self.hypothesis > 0.5, dtype=tf.float32)
+        #[  1.38904853e-03   9.98601973e-01   9.06129208e-06]
+        true_or_false_list = self.hypothesis > 0.5
+        #[[False  True  False]]
+        predicted_casted = tf.cast(true_or_false_list, dtype=tf.float32)
+        #[[ 0.  1.  0.]]
         print('Casted value: ', self.sess.run(predicted_casted, feed_dict={self.X: x_data}))
         print('\n')
 
@@ -368,17 +367,22 @@ class NeuralNetwork:
         h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: xdata, self.Y: ydata})
         print("Predicted(original):\n", h, "\n\nPredicted(casted):\n", c, "\n\nAccuracy: {}".format(a * 100))
 
-    def evaluate_file_one_hot(self, afile, class_num_for_one_hot):
+    #num_of_class: 7, if self.Y is 4 then generates [[0],[0],[0],[0],[1],[0],[0]] as Y_one_hot
+    def Y_2_one_hot(self, y_data, num_of_class):
+        one_hot = tf.one_hot(y_data, num_of_class)  # one hot
+        print("one_hot original", one_hot)
+        one_hot = tf.reshape(one_hot, [-1, num_of_class]) #리스트 [[a],[b]] -> [a, b]
+        print("reshaped", one_hot)
+        return one_hot
+
+    def evaluate_file_one_hot(self, afile, num_of_class):
         f2b = File2Buffer()
         f2b.file_load(afile)
 
-        Y_one_hot = tf.one_hot(self.Y, class_num_for_one_hot)  # one hot
-        print("one_hot original", Y_one_hot)
-        Y_onehot_reshaped = tf.reshape(Y_one_hot, [-1, class_num_for_one_hot])  # 리스트 [[a],[b]] -> [a, b]
-        print("one_hot reshaped", self.Y_one_hot)
+        Y_one_hot_reshaped = self.Y_2_one_hot(f2b.y_data, num_of_class)
 
-        prediction = tf.argmax(self.hypothesis, 1) #
-        correct_prediction = tf.equal(prediction, tf.argmax(Y_onehot_reshaped, 1))
+        index = tf.argmax(self.hypothesis, 1) # op for returning index of a max value
+        correct_prediction = tf.equal(index, tf.argmax(Y_one_hot_reshaped, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         acc = self.sess.run(accuracy, feed_dict={self.X: f2b.x_data, self.Y: f2b.y_data})
         print("Acc: {:.2%}".format(acc))
