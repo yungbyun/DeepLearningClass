@@ -184,7 +184,7 @@ class NeuralNetwork:
         mytool.print_dot()
 
         err = self.sess.run(self.cost_function, feed_dict={self.X: x_data, self.Y: y_data})
-        self.costs.append(err)
+        self.costs.append("{:.8f}".format(err))
 
     def learn(self, xdata, ydata, total_loop, check_step):
         tf.set_random_seed(777)
@@ -391,6 +391,22 @@ class NeuralNetwork:
         self.initializer = NNType.XAIVER
         print('Now, we are using Xavier initializer for weights.')
 
+    # 기존의 층에 relu 만 적용됨
+    def relu(self, layer):
+        layer = tf.nn.relu(layer)  # plane에 있는 각 값에 대하여 relu 적용 -> 모든 plane에 대하여 적용
+        return layer
+
     def dropout(self):
         self.dropout = NNType.DROPOUT
         print('Dropout occurs..')
+
+    def softmax(self, layer):
+        return tf.nn.softmax(layer)
+
+    # 풀링하여 새로운 층을 만듦
+    def max_pooling(self, layer, kernel_x, kernel_y, move_right, move_down):
+        # 2x2 윈도우를 오른쪽으로 2, 아래쪽으로 2씩 움직이면서 윈도우 내에 있는 가장 큰 값을 꺼내어 Pooling layer 만듦.
+        mp_layer = tf.nn.max_pool(layer, ksize=[1, kernel_x, kernel_y, 1], strides=[1, move_right, move_down, 1],
+                                  padding='SAME')
+        # 14x14x32 풀링 레이어
+        return mp_layer

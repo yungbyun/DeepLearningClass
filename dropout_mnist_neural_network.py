@@ -2,12 +2,12 @@ from mnist_neural_network import MnistNeuralNetwork
 import tensorflow as tf
 
 class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
-    D = None
+    DO = None
 
     def set_placeholder(self, num_of_input, num_of_output):
         super().set_placeholder(num_of_input, num_of_output)
         # dropout (keep_prob) rate  0.7 on training, but should be 1 for testing
-        self.D = tf.placeholder(tf.float32)
+        self.DO = tf.placeholder(tf.float32)
 
     def fully_connected_layer(self, pre_output, num_input, num_neuron, w_name):
         # weights & bias for nn layers
@@ -18,7 +18,7 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
         return logit
 
     def my_log(self, i, xdata, ydata):
-        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.D: 0.7})
+        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.DO: 0.7})
         msg = "Step:{}, Error:{:.6f}".format(i, err)
         self.logs.append(msg)
 
@@ -46,7 +46,7 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
                 x_data, y_data = self.get_next_segment()  # 가상함수
 
                 # 아래 에러는 일부분(100개)에 대한 것이므로 전체 에러를 구하려면 550으로 나누어주어야 함. 아래에서 수행
-                err_4_partial, _= self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data, self.D: 0.7})
+                err_4_partial, _= self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data, self.DO: 0.7})
                 err_4_all_data += err_4_partial
 
             import mytool
@@ -60,17 +60,16 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
 
     # 테스트 데이터로 평가
     def evaluate(self):
-        # Test model
-        is_correct = tf.equal(tf.arg_max(self.hypothesis, 1), tf.arg_max(self.Y, 1))
-        # Calculate accuracy
-        accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
+        # true(1) or false(0)
+        hit_record = tf.equal(tf.arg_max(self.hypothesis, 1), tf.arg_max(self.Y, 1))
+        accuracy = tf.reduce_mean(tf.cast(hit_record, tf.float32))
 
         # Test the model using test sets
-        result = accuracy.eval(session=self.sess, feed_dict={self.X: self.db.test.images, self.Y: self.db.test.labels, self.D: 1})
+        result = accuracy.eval(session=self.sess, feed_dict={self.X: self.db.test.images, self.Y: self.db.test.labels, self.DO: 1})
         #result = self.sess.run(accuracy, feed_dict={self.X: db.test.images, self.Y: db.test.labels})
 
-        print("Recognition rate :", result)
+        print("Recognition rate : {:.2f}%".format(result * 100))
 
     def classify(self, mnist_image):
-        category = self.sess.run(tf.argmax(self.hypothesis, 1), feed_dict={self.X: mnist_image, self.D: 1})
+        category = self.sess.run(tf.argmax(self.hypothesis, 1), feed_dict={self.X: mnist_image, self.DO: 1})
         return category
