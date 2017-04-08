@@ -76,7 +76,13 @@ class NeuralNetwork:
         #output = self.get_neuron_output(previous_output, hypothesis_type, W, b)
         output = tf.add(tf.matmul(previous_output, W), b)
         return output
+        '''
+        W = tf.Variable(tf.random_normal([1]), name='weight')
+        b = tf.Variable(tf.random_normal([1]), name='bias')
+        output = previous_output * W + b
+        '''
 
+    '''
     def get_neuron_output(self, previous_output, hypothesis_type, W, b):
         output = None
         if previous_output is None: # if it is input layer
@@ -112,10 +118,11 @@ class NeuralNetwork:
                 output = tf.nn.relu(tf.matmul(previous_output, W) + b)
 
         return output
-        '''
-        self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
-        self.hypothesis = self.X * self.W + self.b
-        '''
+    '''
+    '''
+    self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
+    self.hypothesis = self.X * self.W + self.b
+    '''
 
     def set_hypothesis(self, h):
         self.hypothesis = h
