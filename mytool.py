@@ -24,6 +24,14 @@ def get_numpy_data():
     y_data = np.array([[0], [1], [1], [0]], dtype=np.float32)
     return x_data, y_data
 
+def tensor_version():
+    import tensorflow as tf
+    print(tf.__version__) #0.12.1
+
+
+tensor_version()
+
+
 # x_col = len(x_data[0])
 # y_col = len(y_data[0])
 # print(x_col, y_col) # 3, 1
