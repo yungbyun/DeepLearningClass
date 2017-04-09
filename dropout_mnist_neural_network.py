@@ -1,6 +1,7 @@
 from mnist_neural_network import MnistNeuralNetwork
 import tensorflow as tf
 
+
 class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
     DO = None
 
@@ -14,10 +15,20 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
         # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
         W = tf.get_variable(w_name, shape=[num_input, num_neuron], initializer=tf.contrib.layers.xavier_initializer())
         b = tf.Variable(tf.random_normal([num_neuron]))
-        logit = tf.matmul(pre_output, W) + b
+        logit = tf.add(tf.matmul(pre_output, W), b)
         return logit
 
     def my_log(self, i, xdata, ydata):
+        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.DO: 0.7})
+        msg = "Step:{}, Error:{:.6f}".format(i, err)
+        self.logs.append(msg)
+
+    def log_for_epoch(self, i, xdata, ydata):
+        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.DO: 0.7})
+        msg = "Step:{}, Error:{:.6f}".format(i, err)
+        self.logs.append(msg)
+
+    def log_for_segment(self, i, xdata, ydata):
         err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.DO: 0.7})
         msg = "Step:{}, Error:{:.6f}".format(i, err)
         self.logs.append(msg)
@@ -49,12 +60,14 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
                 err_4_partial, _= self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data, self.DO: 0.7})
                 err_4_all_data += err_4_partial
 
+                self.log_for_segment(i, x_data, y_data)
+
             import mytool
             mytool.print_dot()
             avg_err = err_4_all_data / number_of_segment #
             self.costs.append(avg_err)
 
-            self.my_log(epoch, x_data, y_data)  # 가상함수
+            self.log_for_epoch(epoch, x_data, y_data)  # 가상함수
 
         print("\nDone!\n")
 

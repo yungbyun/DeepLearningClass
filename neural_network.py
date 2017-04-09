@@ -35,6 +35,18 @@ class NeuralNetwork:
         self.logs.append(msg)
 
     @abstractmethod
+    def log_for_segment(self, i, xdata, ydata):
+        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata})
+        msg = "Step:{}, Error:{:.6f}".format(i, err)
+        self.logs.append(msg)
+
+    @abstractmethod
+    def log_for_epoch(self, i, xdata, ydata):
+        err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata})
+        msg = "Step:{}, Error:{:.6f}".format(i, err)
+        self.logs.append(msg)
+
+    @abstractmethod
     def set_weight_initializer(self):
         pass
 
@@ -76,6 +88,7 @@ class NeuralNetwork:
         #output = self.get_neuron_output(previous_output, hypothesis_type, W, b)
         output = tf.add(tf.matmul(previous_output, W), b)
         return output
+
         '''
         W = tf.Variable(tf.random_normal([1]), name='weight')
         b = tf.Variable(tf.random_normal([1]), name='bias')
@@ -301,12 +314,14 @@ class NeuralNetwork:
                 err_4_partial, _= self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data})
                 err_4_all_data += err_4_partial
 
+                self.log_for_segment(i, x_data, y_data)
+
             import mytool
             mytool.print_dot()
             avg_err = err_4_all_data / number_of_segment #
             self.costs.append(avg_err)
 
-            self.my_log(epoch, x_data, y_data)  # 가상함수
+            self.log_for_epoch(epoch, x_data, y_data)  # 가상함수
 
         print("\nDone!\n")
 
