@@ -20,7 +20,7 @@ class SoftmaxOnehot (NeuralNetwork):
     def create_layer(self, previous_output, num_of_input, num_of_neuron, w_name='weight', b_name='bias'):
         self.set_weight_initializer() ## a hole for you
 
-        if self.initializer == NNType.XAIVER:
+        if self.xaiver_initializer == NNType.XAIVER:
             # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
             W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
             b = tf.Variable(tf.random_normal([num_of_neuron]), name=b_name)

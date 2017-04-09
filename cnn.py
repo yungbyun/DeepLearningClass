@@ -54,7 +54,7 @@ class CNN:
         return layer
 
     # 풀링하여 새로운 층을 만듦
-    def max_pooling(self, layer, kernel_x, kernel_y, move_right, move_down):
+    def max_pool(self, layer, kernel_x, kernel_y, move_right, move_down):
         # 2x2 윈도우를 오른쪽으로 2, 아래쪽으로 2씩 움직이면서 윈도우 내에 있는 가장 큰 값을 꺼내어 Pooling layer 만듦.
         mp_layer = tf.nn.max_pool(layer, ksize=[1, kernel_x, kernel_y, 1], strides=[1, move_right, move_down, 1], padding='SAME')
         # 14x14x32 풀링 레이어

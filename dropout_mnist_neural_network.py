@@ -10,14 +10,6 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
         # dropout (keep_prob) rate  0.7 on training, but should be 1 for testing
         self.DO = tf.placeholder(tf.float32)
 
-    def fully_connected_layer(self, pre_output, num_input, num_neuron, w_name):
-        # weights & bias for nn layers
-        # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
-        W = tf.get_variable(w_name, shape=[num_input, num_neuron], initializer=tf.contrib.layers.xavier_initializer())
-        b = tf.Variable(tf.random_normal([num_neuron]))
-        logit = tf.add(tf.matmul(pre_output, W), b)
-        return logit
-
     def my_log(self, i, xdata, ydata):
         err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.DO: 0.7})
         msg = "Step:{}, Error:{:.6f}".format(i, err)

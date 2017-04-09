@@ -22,7 +22,7 @@ class NeuralNetwork:
     biases = []
     logs = []
 
-    initializer = None # for weights
+    xaiver_initializer = None # for weights
 
     @abstractmethod
     def init_network(self):
@@ -60,32 +60,19 @@ class NeuralNetwork:
         self.X = tf.placeholder(tf.float32, shape=[None])
         self.Y = tf.placeholder(tf.float32, shape=[None])
         '''
-    '''
-    def set_weight_bias(self, x_dim, y_dim):
-        self.W = tf.Variable(tf.random_normal([x_dim, y_dim]), name='weight')
-        self.b = tf.Variable(tf.random_normal([y_dim]), name='bias')
 
-        #self.W = tf.Variable(numpy.random.randn(), "weight")
-        #self.b = tf.Variable(numpy.random.randn(), "bias")
-        #self.W = tf.Variable(tf.random_normal([1]), name='weight')
-        #self.b = tf.Variable(tf.random_normal([1]), name='bias')
-        #self.W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))  # 리스트로 리턴
-        #self.b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))  # 리스트로 리턴
-     '''
-
-    def create_layer(self, previous_output, num_of_input, num_of_neuron, w_name, b_name):
+    def fully_connected_layer(self, previous_output, num_of_input, num_of_neuron, w_name, b_name):
 
         self.set_weight_initializer() ## a hole for you to set an initializer
 
-        if self.initializer == NNType.XAIVER:
+        if self.xaiver_initializer == NNType.XAIVER:
             # http://stackoverflow.com/questions/33640581/how-to-do-xavier-initialization-on-tensorflow
             W = tf.get_variable(w_name, shape=[num_of_input, num_of_neuron], initializer = tf.contrib.layers.xavier_initializer())
             b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
-        else : # if self.initializer == None:
+        else :
             W = tf.Variable(tf.random_normal([num_of_input, num_of_neuron]), name = w_name)
             b = tf.Variable(tf.random_normal([num_of_neuron]), name = b_name)
 
-        #output = self.get_neuron_output(previous_output, hypothesis_type, W, b)
         output = tf.add(tf.matmul(previous_output, W), b)
         return output
 
@@ -95,47 +82,10 @@ class NeuralNetwork:
         output = previous_output * W + b
         '''
 
-    '''
-    def get_neuron_output(self, previous_output, hypothesis_type, W, b):
-        output = None
-        if previous_output is None: # if it is input layer
-            if hypothesis_type == NNType.SQUARE_MEAN:
-                output = tf.add(tf.matmul(self.X, W), b)
-            elif hypothesis_type == NNType.LOGISTIC:
-                output = tf.sigmoid(tf.add(tf.matmul(self.X, W), b))
-            elif hypothesis_type == NNType.SOFTMAX:  # softmax
-                # tf.nn.softmax computes softmax activations
-                # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-                logits = tf.add(tf.matmul(self.X, W), b)
-                output = tf.nn.softmax(logits)
-            elif hypothesis_type == NNType.SOFTMAX_LOGITS:
-                # tf.nn.softmax computes softmax activations
-                # softmax = exp(logits) / reduce_sum(exp(logits), dim)
-                logits = tf.matmul(self.X, W) + b
-                output = tf.nn.softmax(logits)
-            elif hypothesis_type == NNType.RELU:
-                output = tf.nn.relu(tf.add(tf.matmul(self.X, W), b))
-
-        else: # if it is not input layer
-            if hypothesis_type == NNType.SQUARE_MEAN:
-                output = tf.add(tf.matmul(previous_output, W), b)
-            elif hypothesis_type == NNType.LOGISTIC:
-                output = tf.sigmoid(tf.matmul(previous_output, W) + b)
-            elif hypothesis_type == NNType.SOFTMAX:  # softmax
-                logits = tf.add(tf.matmul(previous_output, W), b)
-                output = tf.nn.softmax(logits)
-            elif hypothesis_type == NNType.SOFTMAX_LOGITS:
-                logits = tf.add(tf.matmul(previous_output, W), b)
-                output = tf.nn.softmax(logits)
-            elif hypothesis_type == NNType.RELU:
-                output = tf.nn.relu(tf.matmul(previous_output, W) + b)
-
-        return output
-    '''
-    '''
-    self.hypothesis = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
-    self.hypothesis = self.X * self.W + self.b
-    '''
+        '''
+        output = tf.add(tf.mul(self.X, self.W), self.b)  # W * x_data + b
+        output = self.X * self.W + self.b
+        '''
 
     def set_hypothesis(self, h):
         self.hypothesis = h
@@ -387,7 +337,7 @@ class NeuralNetwork:
 
         # Accuracy report
         h, c, a = self.sess.run([self.hypothesis, predicted, accuracy], feed_dict={self.X: xdata, self.Y: ydata})
-        print("Predicted(original):\n", h, "\n\nPredicted(casted):\n", c, "\n\nAccuracy: {}".format(a * 100))
+        print("Predicted(original):\n", h, "\n\nPredicted(casted):\n", c, "\n\nAccuracy: {:.2f}%".format(a * 100))
 
     #num_of_class: 7, if self.Y is 4 then generates [[0],[0],[0],[0],[1],[0],[0]] as Y_one_hot
     def Y_2_one_hot(self, y_data, num_of_class):
@@ -410,8 +360,8 @@ class NeuralNetwork:
         print("Acc: {:.2%}".format(acc))
 
     def xavier(self):
-        self.initializer = NNType.XAIVER
-        print('Now, we are using Xavier initializer for weights.')
+        self.xaiver_initializer = NNType.XAIVER
+        print('Weights initialized using Xavier.')
 
     # 기존의 층에 relu 만 적용됨
     def relu(self, layer):
