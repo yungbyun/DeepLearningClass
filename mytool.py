@@ -36,5 +36,12 @@ tensor_version()
 # y_col = len(y_data[0])
 # print(x_col, y_col) # 3, 1
 
+'''
+h = [1, 0, 0, 0]
+x_data = np.array([[h]], dtype=np.float32) # x_data = [[[1,0,0,0]]] #rank 3,
 
+pp = pprint.PrettyPrinter(indent=4)
+
+
+'''
 

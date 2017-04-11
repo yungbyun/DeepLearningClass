@@ -61,6 +61,8 @@ class NeuralNetwork:
         self.Y = tf.placeholder(tf.float32, shape=[None])
         '''
 
+    # 프로그래밍 관점에서 fully connected layer 하나를 만든다는 의미는? 네트워크에 맞는 W와 b를 정의한 후 WX+b를 리턴하는 것
+    # RNN에서는 어떻게 하는가?
     def fully_connected_layer(self, previous_output, num_of_input, num_of_neuron, w_name, b_name):
 
         self.set_weight_initializer() ## a hole for you to set an initializer
