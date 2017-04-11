@@ -11,6 +11,8 @@ class NNType(Enum):
     RELU = 8
     XAIVER = 9
     DROPOUT = 10
+    RNNCell = 11
+    LSTMCell = 12
 
 
 
