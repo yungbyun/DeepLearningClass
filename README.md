@@ -3,8 +3,9 @@
 Class modules created by Yung Byun for fun using wonderful codes already existing.
 The original codes are from the following:
 
-by Sung Kim in https://github.com/hunkim/, and ... (TBL)
-by Aymeric Damien in https://github.com/aymericdamien/TensorFlow-Examples/,
+by Sung Kim in https://github.com/hunkim/,
+
+by Aymeric Damien in https://github.com/aymericdamien/TensorFlow-Examples/, and ... (TBL)
 
 How have I been doing it? After execution to check it goes well without any errors,
 and, most importantly, without any total understanding, I just started refactoring the codes.
