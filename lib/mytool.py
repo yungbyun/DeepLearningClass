@@ -2,7 +2,7 @@ import sys
 import random
 import numpy as np
 
-#학습하는 동안 진행되는 것을 표시하기 위하여 점을 한줄로 찍도록 하는 코드. print('.')는 새로운 줄에 찍어버림.
+#학습하는 동안 진행되는 것을 점으로 표시.
 def print_dot():
     sys.stdout.write('.')
     sys.stdout.flush()
@@ -27,6 +27,16 @@ def get_numpy_data():
 def tensor_version():
     import tensorflow as tf
     print(tf.__version__) #0.12.1
+
+def tensorboard_msg():
+    print('http://10.0.1.4:6006')
+
+    '''
+    tensorboard --logdir tb/
+    Starting TensorBoard b'41' on port 6006
+    (You can navigate to http://10.0.1.4:6006)
+
+    '''
 
 '''
 tensor_version()

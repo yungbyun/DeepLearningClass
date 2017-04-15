@@ -16,31 +16,50 @@ class XXX (DropoutMnistNeuralNetwork):
         L1 = self.relu(L1)
         L1 = tf.nn.dropout(L1, keep_prob = self.DO)
 
+        tf.summary.histogram("layer", L1)
+
         # 2
         L2 = self.fully_connected_layer(L1, 512, 512, 'Wb', 'bb')
         L2 = self.relu(L2)
         L2 = tf.nn.dropout(L2, keep_prob = self.DO)
+
+        tf.summary.histogram("layer", L2)
 
         # 3
         L3 = self.fully_connected_layer(L2, 512, 512, 'Wc', 'bc')
         L3 = self.relu(L3)
         L3 = tf.nn.dropout(L3, keep_prob = self.DO)
 
+        tf.summary.histogram("layer", L3)
+
         # 4
         L4 = self.fully_connected_layer(L3, 512, 512, 'Wd', 'bd')
         L4 = self.relu(L4)
         L4 = tf.nn.dropout(L4, keep_prob = self.DO)
 
+        tf.summary.histogram("layer", L4)
+
         # 5
         hypo = self.fully_connected_layer(L4, 512, 10, 'We', 'be')
         self.set_hypothesis(hypo)
 
+        tf.summary.histogram("hypothesis", hypo)
+
         self.set_cost_function(NNType.SOFTMAX_LOGITS)
+        tf.summary.scalar("cost", self.cost_function)
+
         self.set_optimizer(NNType.ADAM, 0.001)
+
+        self.summary = tf.summary.merge_all()
+        # Create summary writer
+        self.writer = tf.summary.FileWriter(TB_SUMMARY_DIR)
+        self.writer.add_graph(self.sess.graph)
 
     def log_for_epoch(self, i, xdata, ydata):
         print('Cost:', self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata, self.DO: 1.0}))
 
+
+TB_SUMMARY_DIR = './tb/mnist'
 
 gildong = XXX()
 gildong.learn_mnist(1, 100)

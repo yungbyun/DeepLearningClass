@@ -35,6 +35,8 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
         # Initialize TensorFlow variables
         self.sess.run(tf.global_variables_initializer())
 
+        self.create_writer()
+
         print("\nStart learning:")
         # Training cycle
         for epoch in range(learning_epoch):
@@ -51,7 +53,7 @@ class DropoutMnistNeuralNetwork (MnistNeuralNetwork):
                 # 아래 에러는 일부분(100개)에 대한 것이므로 전체 에러를 구하려면 550으로 나누어주어야 함. 아래에서 수행
                 err_4_partial, _= self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data, self.DO: 0.7})
                 err_4_all_data += err_4_partial
-
+                self.do_summary({self.X: x_data, self.Y: y_data, self.DO: 0.7})
                 self.log_for_segment(i, x_data, y_data)
 
             from lib import mytool

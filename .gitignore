@@ -1,5 +1,7 @@
 MNIST_data
+tb
 rnn.py
 rnn2.py
 rnn_basic.py
 rnn_basic-original.py
+layer_test.py

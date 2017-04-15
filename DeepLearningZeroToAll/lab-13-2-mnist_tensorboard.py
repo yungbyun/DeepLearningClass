@@ -14,11 +14,10 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 # parameters
 learning_rate = 0.001
-training_epochs = 15
-batch_size = 100
+training_epochs = 1 #15
+batch_size = 10 #100
 
 TB_SUMMARY_DIR = './tb/mnist'
-
 
 # input place holders
 X = tf.placeholder(tf.float32, [None, 784])
@@ -124,6 +123,9 @@ for epoch in range(training_epochs):
 
         avg_cost += sess.run(cost, feed_dict=feed_dict) / total_batch
 
+    from lib.mytool import print_dot
+    print_dot()
+
     print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
 
 print('Learning Finished!')
@@ -131,14 +133,12 @@ print('Learning Finished!')
 # Test model and check accuracy
 correct_prediction = tf.equal(tf.argmax(hypothesis, 1), tf.argmax(Y, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-print('Accuracy:', sess.run(accuracy, feed_dict={
-      X: mnist.test.images, Y: mnist.test.labels, keep_prob: 1}))
+print('Accuracy:', sess.run(accuracy, feed_dict={X: mnist.test.images, Y: mnist.test.labels, keep_prob: 1}))
 
 # Get one and predict
 r = random.randint(0, mnist.test.num_examples - 1)
 print("Label: ", sess.run(tf.argmax(mnist.test.labels[r:r + 1], 1)))
-print("Prediction: ", sess.run(
-    tf.argmax(hypothesis, 1), feed_dict={X: mnist.test.images[r:r + 1], keep_prob: 1}))
+print("Prediction: ", sess.run(tf.argmax(hypothesis, 1), feed_dict={X: mnist.test.images[r:r + 1], keep_prob: 1}))
 
 # plt.imshow(mnist.test.images[r:r + 1].
 #           reshape(28, 28), cmap='Greys', interpolation='nearest')

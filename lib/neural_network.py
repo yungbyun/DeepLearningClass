@@ -52,6 +52,14 @@ class NeuralNetwork:
     def set_weight_initializer(self):
         pass
 
+    @abstractmethod
+    def create_writer(self):
+        pass
+
+    @abstractmethod
+    def do_summary(self, feed_dict):
+        pass
+
     def set_placeholder(self, num_of_input, num_of_output):
         self.X = tf.placeholder(tf.float32, [None, num_of_input])
         self.Y = tf.placeholder(tf.float32, [None, num_of_output])
@@ -172,12 +180,16 @@ class NeuralNetwork:
         # Initialize TensorFlow variables
         self.sess.run(tf.global_variables_initializer())
 
+        self.create_writer()  # virtual function for tensorboard
+
         # 옵티마이저로 학습(W, b를 수정)
         # 지정한 간격으로 W, b를 리스트에 저장하고 그 때의 오류값도 리스트에 저장
         # 원하는 것을 할 수 있도록
         print('\nStart learning:')
         for i in range(total_loop + 1):  # 10,001
             self.sess.run(self.optimizer, feed_dict={self.X: xdata, self.Y: ydata})
+
+            self.do_summary(feed_dict={self.X: xdata, self.Y: ydata})  # virtual function for tensorboard
 
             if i % check_step == 0:
                 self.check_step_processing(i, xdata, ydata)
@@ -227,11 +239,15 @@ class NeuralNetwork:
         coord = tf.train.Coordinator()
         threads = tf.train.start_queue_runners(sess=self.sess, coord=coord)
 
+        self.create_writer()  # virtual function for tensorboard
+
         print('\nStart learning:')
 
         for step in range(total_loop + 1):
             x_data, y_data = self.sess.run([train_x_batch, train_y_batch])
             err_val = self.sess.run(self.optimizer, feed_dict={self.X: x_data, self.Y: y_data})
+
+            self.do_summary(feed_dict={self.X: x_data, self.Y: y_data})  # virtual function for tensorboard
 
             if step % check_step == 0: #10
                 self.check_step_processing(step, x_data, y_data)
@@ -251,7 +267,10 @@ class NeuralNetwork:
         # Initialize TensorFlow variables
         self.sess.run(tf.global_variables_initializer())
 
+        self.create_writer()  # virtual function for tensorboard
+
         print("\nStart learning:")
+
         # Training cycle
         for epoch in range(learning_epoch):
             err_4_all_data = 0
@@ -267,6 +286,8 @@ class NeuralNetwork:
                 # 아래 에러는 일부분(100개)에 대한 것이므로 전체 에러를 구하려면 550으로 나누어주어야 함. 아래에서 수행
                 err_4_partial, _= self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data})
                 err_4_all_data += err_4_partial
+
+                self.do_summary(feed_dict={self.X: x_data, self.Y: y_data})  # virtual function for tensorboard
 
                 self.log_for_segment(i, x_data, y_data)
 

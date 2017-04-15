@@ -1,11 +1,13 @@
 # Lab 4 Multi-variable linear regression
 
 from lib.neural_network import NeuralNetwork
-
+from lib.tensor_board_util import TensorBoardUtil
 from lib.nntype import NNType
 
 
 class MyNeuron (NeuralNetwork):
+    tbutil = TensorBoardUtil()
+
     def init_network(self):
         self.set_placeholder(3, 1)
 
@@ -15,6 +17,15 @@ class MyNeuron (NeuralNetwork):
         self.set_hypothesis(hypo)
         self.set_cost_function(NNType.SQUARE_MEAN)
         self.set_optimizer(NNType.GRADIENT_DESCENT, l_rate=1e-5)
+
+        self.tbutil.scalar('Error', self.cost_function)
+        self.tbutil.merge()
+
+    def create_writer(self):
+        self.tbutil.create_writer(self.sess, './tb/lab_04_2_1')
+
+    def do_summary(self, feed_dict):
+        self.tbutil.do_summary(self.sess, feed_dict)
 
 
 x_dat = [[73., 80., 75.],

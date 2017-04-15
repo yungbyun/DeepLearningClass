@@ -1,4 +1,3 @@
-import tensorflow as tf
 from lib.neural_network_simple1 import NeuralNetworkSimple1
 
 

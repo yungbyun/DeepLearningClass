@@ -38,5 +38,5 @@ print(sess.run(hypothesis))
 
 print('Hello\n')
 
-print(tf.nn.rnn_cell.BasicRNNCell)
-
+cell = tf.contrib.rnn.core_rnn_cell.BasicLSTMCell(num_units=3, state_is_tuple=True) #hidden_size
+print(cell)
