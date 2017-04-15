@@ -2,74 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57a5ff0b-f433-4a8d-887a-98fddcb7f8cc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/rnn_core.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/tensor_board_util.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/data-01-test-score.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/data-02-stock_daily.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/data-03-diabetes.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/data-04-zoo.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-02-1-linear_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-04-1-multi_input_linear_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-04-2-multi_input_linear_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-04-3-file_input_linear_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-04-4-stock_linear_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-05-1-logistic_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-05-2-logistic_regression_diabetes.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-06-1-softmax.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-06-2-softmax_zoo.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-09-1-xor.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-09-2-xor-nn.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-11-1-cnn_mnist.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-12-1-rnn_hello_char.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-12-1-softmax_hello_char.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-12-2-rnn_long_char.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-12-3-rnn_stock_prediction.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-12-4-rnn_deep_prediction.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/Keras/klab-12-5-seq2seq.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/backup/logistic_regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/backup/nearest_neighbor2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/backup/regression.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/backup/tfvariable.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/data-01-test-score.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/data-03-diabetes.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/data-04-zoo.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-02-1-linear_regression2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-02-2-linear_regression_feed2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-04-2-multi_variable_matmul_linear_regression2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-04-3-file_input_linear_regression2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-04-4-tf_reader_linear_regression2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-05-1-logistic_regression2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-05-2-logistic_regression_diabetes.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-06-1-softmax_classifier2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-06-2-softmax_zoo_classifier2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-07-4-mnist_introduction2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-09-1-xor2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-09-2-xor-nn2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-09-3-xor-nn-wide-deep2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-10-1-mnist_softmax2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-10-2-mnist_nn2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-10-3-mnist_nn_xavier2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-10-4-mnist_nn_deep2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-11-1-mnist_cnn2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-11-2-mnist_deep_cnn2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-11-4-mnist_cnn_ensemble2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-12-1-hello-rnn2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-12-1-hello-rnn3.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/layer_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/tests/test_square.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lab-12-1-hello-rnn3.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/bcart/lab-10-5-mnist_nn_dropout2.py" afterPath="$PROJECT_DIR$/lab-13-2-mnist_tensorboard2.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DeepLearningZeroToAll/lab-13-2-mnist_tensorboard.py" afterPath="$PROJECT_DIR$/DeepLearningZeroToAll/lab-13-2-mnist_tensorboard.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab-02-1-linear_regression2.py" afterPath="$PROJECT_DIR$/lab-02-1-linear_regression2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab-04-2-multi_variable_matmul_linear_regression2.py" afterPath="$PROJECT_DIR$/lab-04-2-multi_variable_matmul_linear_regression2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab-10-5-mnist_nn_dropout2.py" afterPath="$PROJECT_DIR$/lab-10-5-mnist_nn_dropout2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" afterPath="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/layer_test.py" afterPath="$PROJECT_DIR$/layer_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dropout_mnist_neural_network.py" afterPath="$PROJECT_DIR$/lib/dropout_mnist_neural_network.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/mytool.py" afterPath="$PROJECT_DIR$/lib/mytool.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/neural_network.py" afterPath="$PROJECT_DIR$/lib/neural_network.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -81,6 +16,36 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layer_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/layer_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="lab-12-1-hello-rnn2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab-12-1-hello-rnn2.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lab-10-X1-mnist_back_prop.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lab-10-X1-mnist_back_prop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DeepLearningZeroToAll/lab-10-X1-mnist_back_prop.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="432">
@@ -201,7 +166,6 @@
         <option value="$PROJECT_DIR$/DeepLearningZeroToAll/lab-13-2-mnist_tensorboard.py" />
         <option value="$PROJECT_DIR$/lib/dropout_mnist_neural_network.py" />
         <option value="$PROJECT_DIR$/lab-13-2-mnist_tensorboard3.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lib/tensor_board_util.py" />
         <option value="$PROJECT_DIR$/lib/neural_network_simple1.py" />
         <option value="$PROJECT_DIR$/lab-02-1-linear_regression2.py" />
@@ -210,13 +174,15 @@
         <option value="$PROJECT_DIR$/lab-13-2-mnist_tensorboard2.py" />
         <option value="$PROJECT_DIR$/lib/rnn_core.py" />
         <option value="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="319" />
     <option name="y" value="61" />
-    <option name="width" value="2003" />
+    <option name="width" value="2139" />
     <option name="height" value="1250" />
   </component>
   <component name="ProjectView">
@@ -245,6 +211,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="DeepLearningLib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DeepLearningLib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DeepLearningLib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -467,9 +447,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="319" y="61" width="2003" height="1250" extended-state="0" />
+    <frame x="319" y="61" width="2139" height="1250" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23375408" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2599492" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -506,13 +487,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rnn_basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="100" column="7" lean-forward="true" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rnn2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -732,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab-13-2-mnist_tensorboard2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="584">
@@ -784,14 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layer_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -896,6 +854,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layer_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>

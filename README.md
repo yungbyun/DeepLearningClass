@@ -1,13 +1,15 @@
-# DeepLearningLib
+# DeepLearningClass
 
-Some Class modules created by Yung Byun for study using codes already existing. The wonderful original codes are from the following:
+Class modules created by Yung Byun for fun using wonderful codes already existing.
+The original codes are from the following:
 
-by Aymeric Damien in https://github.com/aymericdamien/TensorFlow-Examples/, 
 by Sung Kim in https://github.com/hunkim/, and ... (TBL)
+by Aymeric Damien in https://github.com/aymericdamien/TensorFlow-Examples/,
 
-When I firstly experienced TesforFlow with Python, I was little bit confused but interested in. After several times of coding, I felt that it is not easy to remember or memorize some bunch of codes, while I found Python is also really good object-oriented languate. So I tried to make it just for my own studying TensorFlow and Python language itself.
-
-How I am doing it? Without total understanding, I just started to make my own classes using the wonderful material mentioned above. 
+How have I been doing it? After execution to check it goes well without any errors,
+and, most importantly, without any total understanding, I just started refactoring the codes.
+What happened to me is just understanding the underling idea after for a while.
+Really easy to make some codes into well structured COMMON framework and classes, and it's  so fun!
 
 * Simple but (as a beginer) confusing 
 * Good object-oriented language
