@@ -13,6 +13,8 @@ char2idx = {c: i for i, c in enumerate(idx2char)}  # char -> idex
 
 # hyper parameters
 dic_size = len(char2idx)  # RNN input size (one hot size)
+print('input', dic_size)
+
 rnn_hidden_size = len(char2idx)  # RNN output size
 num_classes = len(char2idx)  # final output size (RNN or softmax, etc.)
 batch_size = 1  # one sample data, one batch

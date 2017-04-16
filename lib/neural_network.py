@@ -1,5 +1,4 @@
 from abc import abstractmethod
-
 import lib.mytool as mytool
 import tensorflow as tf
 from lib.file2buffer import File2Buffer
