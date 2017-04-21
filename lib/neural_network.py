@@ -123,6 +123,7 @@ class NeuralNetwork:
            self.optimizer = tf.train.AdamOptimizer(learning_rate=l_rate).minimize(self.cost_function)
 
     def show_error(self):
+        from lib.myplot import MyPlot
         mp = MyPlot()
         mp.set_labels('Step', 'Error')
         mp.show_list(self.costs)

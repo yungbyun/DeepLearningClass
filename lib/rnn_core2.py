@@ -39,6 +39,7 @@ class RNNCore2:
         # X: [[9, 1, 7, 9, 2, 3, 8, 9, 5, 4, 6, 0, 9, 2, 3]], num_classes: 10
         # X로 입력받는 숫자 각각에 대하여 num_classes 개의 0 중 해당 위치만 1로 만드는 텐서를 리턴함.
         x_one_hot = tf.one_hot(X, num_classes)  # X: 1 -> x_one_hot: 0 1 0 0 0 0 0 0 0 0
+        print(x_one_hot) # (?, 15, 10) (?, x_data 문자 수, x_data 중복제거 문자 수)
 
         cell = tf.contrib.rnn.BasicLSTMCell(num_units=hidden_size, state_is_tuple=True)  # 10
         initial_state = cell.zero_state(batch_size, tf.float32)  # 1
@@ -77,7 +78,7 @@ class RNNCore2:
     def set_optimizer(self, l_rate):
         self.optimizer = tf.train.AdamOptimizer(learning_rate=l_rate).minimize(self.cost_function)
 
-    def set_sentence(self, my_sentence):
+    def get_data(self, my_sentence):
         self.cheolsu.set_sentence(my_sentence)
 
         # hyper parameters
@@ -108,10 +109,14 @@ class RNNCore2:
         print('\nStart learning:')
 
         x_index_list = self.cheolsu.sentence_to_index_list(xdata)
+        #[6, 2, 6, 7, 10, 5, 3, 6, 11, 10, 1, 6, 12, 10, 6, 0, 1, 8, 9]
+
         y_index_list = self.cheolsu.sentence_to_index_list(ydata)
+        #[2, 6, 7, 10, 5, 3, 6, 11, 10, 1, 6, 12, 10, 6, 0, 1, 8, 9, 4]
 
         for i in range(total_loop):  # 3000
-            l, _ = self.sess.run([self.cost_function, self.optimizer], feed_dict={self.X: [x_index_list], self.Y: [y_index_list]})
+            l, _ = self.sess.run([self.cost_function, self.optimizer],
+                feed_dict={self.X: [x_index_list], self.Y: [y_index_list]})
 
             if i % check_step == 0:  # 10
                 self.costs.append(l)

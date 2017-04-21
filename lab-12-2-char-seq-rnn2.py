@@ -15,11 +15,15 @@ class XXX (RNNCore2):
 
 
 gildong = XXX()
-ms = " I love you so much"
-xd, yd = gildong.set_sentence(ms)
+ms = " If you want you"
+
+xd, yd = gildong.get_data(ms)
+print(xd)
+print(yd)
+
 gildong.learn(xd, yd, 400, 20) #3000
 gildong.predict(xd)
-gildong.show_error()
+#gildong.show_error()
 
 
 
