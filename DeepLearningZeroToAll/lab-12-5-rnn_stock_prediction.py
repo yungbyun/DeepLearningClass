@@ -63,7 +63,7 @@ rmse = tf.sqrt(tf.reduce_mean(tf.square(targets - predictions)))
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-for i in range(500):
+for i in range(100):
     _, step_loss = sess.run([train, loss], feed_dict={X: trainX, Y: trainY})
     print(i, step_loss)
 

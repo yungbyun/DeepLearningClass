@@ -3,6 +3,7 @@ import tensorflow as tf
 from lib.neural_network import NeuralNetwork
 
 from lib.nntype import NNType
+from lib.network_loader import NetworkLoader
 
 
 class XXX (NeuralNetwork):
@@ -17,6 +18,11 @@ class XXX (NeuralNetwork):
         self.set_cost_function(NNType.SOFTMAX)
         self.set_optimizer(NNType.GRADIENT_DESCENT, 0.1)
 
+    '''
+    def set_network_loader(self):
+        self.network_loader = NetworkLoader()
+        print('Network Loader start!')
+    '''
 
 x_data = [[1, 2, 1, 1],
           [2, 1, 3, 2],
@@ -36,8 +42,8 @@ y_data = [[0, 0, 1],
           [1, 0, 0]]
 
 gildong = XXX()
-gildong.learn(x_data, y_data, 2000, 200)
+gildong.learn(x_data, y_data, 5000, 200)
 gildong.test_sigmoid([[1, 11, 7, 9]])
 gildong.test_argmax([[1, 11, 7, 9], [1, 3, 4, 3], [1, 1, 0, 1]])
-gildong.show_error()
-#gildong.evaluate_sigmoid(x_data, y_data)
+#gildong.show_error()
+gildong.evaluate_sigmoid(x_data, y_data)

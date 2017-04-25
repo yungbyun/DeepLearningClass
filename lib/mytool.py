@@ -2,6 +2,19 @@ import sys
 import random
 import numpy as np
 
+
+# 열 별로 0~1 정규화 수행
+def min_max_scalar(self, data):  # np.shape(data) = (732, 5)
+    print(np.shape(data))
+
+    num_row = np.shape(data)[0]  # 732
+    num_col = np.shape(data)[1]  # 5
+    array = np.zeros((num_row, num_col))  #
+    for i in range(num_col):  # 5
+        input = data[:, i]  # 0번째, 1번째, ... 4번째 컬럼 통째
+        array[:, i] = (input - np.min(input)) / (np.max(input) - np.min(input))
+    return array
+
 #학습하는 동안 진행되는 것을 점으로 표시.
 def print_dot():
     sys.stdout.write('.')
