@@ -13,7 +13,7 @@ class MyRNN(StockRNN):
 
     def init_network(self):
         gildong.set_parameter(5, 7, 1) #input_size, seq_length, output_size
-        self.set_placeholder(self.seq_length, self.data_dim)
+        self.set_placeholder(self.seq_length, self.input_dim)
 
         hypo = self.create_simple_rnn_layer(self.output_dim)
 

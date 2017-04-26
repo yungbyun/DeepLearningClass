@@ -6,7 +6,7 @@ from abc import abstractmethod
 
 class StockRNN:
 
-    data_dim = 0 #5 input size?
+    input_dim = 0 #5 input size?
     output_dim = 0 #3  단순 rnn일 때는 1
     seq_length = 0 #7 time steps
 
@@ -24,7 +24,7 @@ class StockRNN:
         pass
 
     def set_parameter(self, input_dim, seq_length, output_dim):
-        self.data_dim = input_dim
+        self.input_dim = input_dim
         self.output_dim = output_dim
         self.seq_length = seq_length
 
@@ -72,7 +72,7 @@ class StockRNN:
         tf.set_random_seed(777)  # reproducibility
 
         self.init_network()
-        if self.data_dim == 0 | self.output_dim == 0 | self.seq_length == 0:
+        if self.input_dim == 0 | self.output_dim == 0 | self.seq_length == 0:
             print('Set RNN parameters!')
             exit()
 

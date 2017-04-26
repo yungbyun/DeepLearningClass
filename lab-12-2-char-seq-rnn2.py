@@ -23,7 +23,7 @@ print(yd)
 
 gildong.learn(xd, yd, 400, 20) #3000
 gildong.predict(xd)
-#gildong.show_error()
+gildong.show_error()
 
 
 

@@ -12,7 +12,7 @@ class MyStockDB(CommonDB):
 class MyRNN(StockRNN):
     def init_network(self):
         self.set_parameter(5, 7, 30) #input, seq_length, output
-        self.set_placeholder(self.seq_length, self.data_dim)
+        self.set_placeholder(self.seq_length, self.input_dim)
 
         hypo = self.create_multi_rnn_softmax_layer()
 
@@ -26,7 +26,7 @@ gildong = MyRNN()
 db = MyStockDB()
 db.load('data-02-stock_daily.csv', 7) # gildong.seq_length
 
-gildong.learn(db.trainX, db.trainY, 10000, 10)
+gildong.learn(db.trainX, db.trainY, 500, 10)
 gildong.predict(db.testX, db.testY)
 #gildong.show_error()
 

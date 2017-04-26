@@ -79,7 +79,7 @@ class RNNCore2:
         self.optimizer = tf.train.AdamOptimizer(learning_rate=l_rate).minimize(self.cost_function)
 
     def get_data(self, my_sentence):
-        self.cheolsu.set_sentence(my_sentence)
+        self.cheolsu.make_unique_lists(my_sentence)
 
         # hyper parameters
         self.hidden_size = len(self.cheolsu.unique_char_and_index)  # 10, RNN output size
