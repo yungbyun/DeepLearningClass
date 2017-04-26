@@ -11,6 +11,7 @@ for epoch in range(sa.get_starting_epoch(), training_epochs):
     sa.save(sess, CHECK_POINT_DIR, epoch, global_step)
 '''
 
+
 class NetworkLoader:
     saver = None
     last_location = tf.Variable(0, name='last_epoch')

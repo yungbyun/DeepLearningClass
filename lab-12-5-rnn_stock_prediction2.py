@@ -6,12 +6,13 @@ class MyDB(CommonDB):
     def preprocesisng(self):
         self.reverse()
         self.min_max_scalr()
+        #self.normalize()
 
 
 class MyRNN(StockRNN):
 
     def init_network(self):
-        gildong.set_parameter(5, 1, 7) #input_size, output_size, seq_length
+        gildong.set_parameter(5, 7, 1) #input_size, seq_length, output_size
         self.set_placeholder(self.seq_length, self.data_dim)
 
         hypo = self.create_simple_rnn_layer(self.output_dim)

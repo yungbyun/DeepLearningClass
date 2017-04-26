@@ -23,7 +23,7 @@ class StockRNN:
     def init_network(self):
         pass
 
-    def set_parameter(self, input_dim, output_dim, seq_length):
+    def set_parameter(self, input_dim, seq_length, output_dim):
         self.data_dim = input_dim
         self.output_dim = output_dim
         self.seq_length = seq_length
@@ -37,7 +37,7 @@ class StockRNN:
         # create_rnn_layer(output_dim)
         cell = tf.contrib.rnn.BasicLSTMCell(num_units=self.output_dim, state_is_tuple=True)
         outputs, _states = tf.nn.dynamic_rnn(cell, self.X, dtype=tf.float32)
-        # print(outputs)
+        print(outputs)
         Y_pred = outputs[:, -1]  # 1개짜리 7개 중 가장 마지막 1개짜리를 출력으로 선택함.
         return Y_pred
 
