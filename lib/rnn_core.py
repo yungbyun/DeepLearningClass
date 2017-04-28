@@ -81,14 +81,16 @@ class RNNCore:
 
     def predict(self, xdata):
         print('\nPrediction:')
-        print("'{}'".format(xdata), '\n->')
+        print("'{}'".format(xdata))
         x_index_list = self.indexing_tool.sentence_to_index_list(xdata)
+        print(x_index_list, '\n->')
 
         prediction = tf.argmax(self.hypothesis, axis=2)
-        print(x_index_list)
         index_list = self.sess.run(prediction, feed_dict={self.X: [x_index_list]})
         result_str = self.indexing_tool.index_list_to_sentence(index_list)
+        aaa = self.indexing_tool.sentence_to_index_list(result_str)
         print("'{}'".format(result_str))
+        print(index_list, aaa)
 
     def print_log(self):
         for item in self.logs:
