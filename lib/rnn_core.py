@@ -58,18 +58,19 @@ class RNNCore:
         # X: [[9, 1, 7, 9, 2, 3, 8, 9, 5, 4, 6, 0, 9, 2, 3]], num_classes: 10
         # X로 입력받는 숫자 각각에 대하여 num_classes 개의 0 중 해당 위치만 1로 만드는 텐서를 리턴함.
         x_one_hot = tf.one_hot(X, num_classes)  # X: 1 -> x_one_hot: 0 1 0 0 0 0 0 0 0 0
-        print(x_one_hot) #(?, 15, 10), (?, 6, 5)
+        print(x_one_hot) #(1, 15, 10), (1, 6, 5), (1, 12, 10)
 
         cell = tf.contrib.rnn.BasicLSTMCell(num_units=hidden_size, state_is_tuple=True)  # 10
         initial_state = cell.zero_state(batch_size, tf.float32)  # 1
         hypothesis, _states = tf.nn.dynamic_rnn(cell, x_one_hot, initial_state=initial_state, dtype=tf.float32)
         print(hypothesis)
-        # shape = (1, 15, 10) 글자 하나를 의미하는 출력 벡터가 15개 출력됨.
-        # shape = (1, 6, 5)
+        # shape = (1, 15, 10) 글자 하나를 의미하는 10차원 출력 벡터 -> 15개 출력됨.
+        # shape = (1, 6, 5) 'hihello'
+        # shape = (1, 12, 10) ' hello,world!'
         return hypothesis
 
-    def set_hypothesis(self, output):
-        self.hypothesis = output
+    def set_hypothesis(self, hypo):
+        self.hypothesis = hypo
 
     def set_cost_function(self, batch_size, seq_len):
         weights = tf.ones([batch_size, seq_len])
@@ -86,11 +87,28 @@ class RNNCore:
         print(x_index_list, '\n->')
 
         prediction = tf.argmax(self.hypothesis, axis=2)
+        print('hypo', self.hypothesis, 'pred', prediction)
+
+        #print(self.sess.run(self.hypothesis, feed_dict={self.X: [x_index_list]}))
+        '''
+        [[[ -7.60889530e-01  -7.61245489e-01   7.61426389e-01  -7.60769010e-01  2.92712706e-04  -7.60979712e-01  -7.60919273e-01  -7.60645986e-01         -7.61091411e-01   2.24163537e-04]
+          [ -9.63875651e-01  -9.63916421e-01  -7.61444509e-01  -9.63519752e-01  9.63881433e-01   2.09505345e-07  -9.63651180e-01  -9.63523090e-01             -9.63534832e-01   3.08772025e-04]
+          [ -9.95005786e-01  -9.95038867e-01  -9.63946640e-01  -9.94904399e-01 -7.60594845e-01   9.02319330e-11  -9.94967639e-01  -9.94871318e-01             -9.94430423e-01   9.94974613e-01]
+          [ -5.35215557e-01  -9.99327421e-01  -9.95024443e-01  -9.99302208e-01 -9.63744700e-01   1.18589848e-02  -9.98280883e-01  -9.99160469e-01             -9.98650908e-01   9.96824741e-01]
+          [  6.11776626e-03  -9.99908924e-01  -9.99323547e-01  -9.99903798e-01 -9.95005310e-01   9.96469498e-01  -9.99659717e-01  -9.99661803e-01             -9.99683619e-01  -7.36088276e-01]
+          [  9.60394263e-01  -9.99987423e-01  -9.99908090e-01  -9.99291837e-01 -9.99211133e-01  -7.61046708e-01  -9.99948144e-01   2.61888683e-01             -9.99956906e-01  -9.58742678e-01]
+          [ -7.60107040e-01  -9.99974608e-01  -9.99959528e-01  -9.94525969e-01 -9.99845624e-01   2.54319757e-01  -9.99961793e-01   8.53177905e-01             -9.99958813e-01  -9.92042959e-01]
+          [ -9.63886976e-01  -9.99993503e-01  -9.99993265e-01   1.98726416e-01 -9.99944687e-01   8.50999951e-01  -9.99993205e-01  -7.60818124e-01             -9.99987900e-01  -9.98903275e-01]
+          [ -9.94598150e-01  -9.99999583e-01  -9.99999464e-01   8.33957970e-01 -9.99989092e-01  -7.60911524e-01  -9.99997735e-01  -9.61866200e-01             -9.99991894e-01  -9.99726295e-01]
+          [ -9.99267161e-01  -9.99999642e-01  -9.99999166e-01  -7.60838807e-01 -9.99989212e-01  -9.63607967e-01   2.22954378e-01  -9.94749427e-01             -9.99761939e-01   7.61457145e-01]
+          [ -9.98854220e-01  -9.99998808e-01  -9.99999642e-01  -9.63535964e-01 -9.99997735e-01  -9.92970109e-01   8.41399848e-01  -9.99194026e-01              1.79880947e-01  -7.59848118e-01]
+          [ -9.99900341e-01  -9.99979973e-01  -9.99982417e-01  -9.94852543e-01 -9.99965668e-01  -9.99042451e-01  -7.60782719e-01  -9.99876380e-01              8.27998161e-01  -9.63666797e-01]]]
+         '''
         index_list = self.sess.run(prediction, feed_dict={self.X: [x_index_list]})
         result_str = self.indexing_tool.index_list_to_sentence(index_list)
         aaa = self.indexing_tool.sentence_to_index_list(result_str)
         print("'{}'".format(result_str))
-        print(index_list, aaa)
+        print(aaa)
 
     def print_log(self):
         for item in self.logs:
@@ -114,8 +132,6 @@ class RNNCore:
         self.sess.run(tf.global_variables_initializer())
 
         self.create_writer()  # virtual function for tensorboard
-
-
 
         x_index_list = self.indexing_tool.sentence_to_index_list(xd)
         #[1, 4, 1, 0, 3, 3]

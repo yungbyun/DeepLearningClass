@@ -4,7 +4,7 @@ from lib.tensor_board_util import TensorBoardUtil
 
 
 class XXX (RNNCore):
-    tbutil = TensorBoardUtil()
+    board = TensorBoardUtil()
 
     def init_network(self):
         self.set_placeholder(seq_len=self.length_of_sequence, hidden_size=self.hidden_size)
@@ -34,7 +34,7 @@ gildong.show_parameters()
 
 xd = ' hello,world'
 yd = 'hello,world!'
-gildong.learn(xd, yd, 1000, 10)
+gildong.learn(xd, yd, 200, 10)
 gildong.predict(' hello,world') # hihell -> ihello
 #gildong.predict(' heel') # (1, 6)
 gildong.show_error()
