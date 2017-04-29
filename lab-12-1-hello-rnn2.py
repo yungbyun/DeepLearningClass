@@ -1,6 +1,7 @@
 # Lab 12 RNN
 from lib.rnn_core import RNNCore
 from lib.tensor_board_util import TensorBoardUtil
+from lib.string_db import StringDB
 
 
 class XXX (RNNCore):
@@ -9,7 +10,7 @@ class XXX (RNNCore):
     def init_network(self):
         self.set_placeholder(seq_len=self.length_of_sequence, hidden_size=self.hidden_size)
 
-        logits = self.rnn_lstm_cell2(self.X, num_classes=self.input_size, hidden_size=self.hidden_size, batch_size=1)
+        logits = self.rnn_lstm_cell(self.X, num_classes=self.input_size, hidden_size=self.hidden_size, batch_size=1)
 
         self.set_hypothesis(logits)
         self.set_cost_function(batch_size=1, seq_len=self.length_of_sequence)
@@ -29,13 +30,19 @@ class XXX (RNNCore):
 
 gildong = XXX()
 
-gildong.set_parameters(' hello,world!') #
+db = StringDB()
+db.load(' Hello,World!')
+
+gildong.set_parameters(db.unique_char_num, db.sequence_num) # '유일한 문자수, 전체길이-1
 gildong.show_parameters()
 
-xd = ' hello,world'
-yd = 'hello,world!'
-gildong.learn(xd, yd, 200, 10)
-gildong.predict(' hello,world') # hihell -> ihello
-#gildong.predict(' heel') # (1, 6)
+gildong.learn(db.x_index_list, db.y_index_list, 500, 10)
+
+index = gildong.predict(db.sentence_to_index_list(' Hello,World')) # 'hello,world!'
+print(db.index_list_to_sentence(index))
+
+index = gildong.predict(db.sentence_to_index_list(' Hello,Worll')) # 'hello,world!'
+print(db.index_list_to_sentence(index))
+
 gildong.show_error()
 

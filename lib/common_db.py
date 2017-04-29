@@ -55,10 +55,11 @@ class CommonDB:
         dataX = []
         dataY = []
         # append 횟수는? 전체 줄 수(732) - sequence length(7) = 725
-        for i in range(0, len(originalY) - seq_length):
+        for i in range(0, len(originalY) - seq_length + 1):  # 아래 아래 _y 구할 때 인덱스에 -1을 추가하면(즉, 시퀀스 마지막 폐장 주가를 타겟으로 하면) 여기에 +1
             _x = originalX[i:i + seq_length]
-            _y = originalY[i + seq_length]  # Next close price as target
+            _y = originalY[i + seq_length - 1]  # Next close price as target
             #print(_x, "->", _y)
+            print(i)
             dataX.append(_x)
             dataY.append(_y)
 

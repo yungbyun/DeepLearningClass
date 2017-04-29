@@ -12,7 +12,7 @@ class MyDB(CommonDB):
 class MyRNN(StockRNN):
 
     def init_network(self):
-        gildong.set_parameter(5, 7, 1) #input_size, seq_length, output_size
+        self.set_parameter(5, 7, 1) #input_size, seq_length, output_size
         self.set_placeholder(self.seq_length, self.input_dim)
 
         hypo = self.create_simple_rnn_layer(self.output_dim)
@@ -23,10 +23,11 @@ class MyRNN(StockRNN):
         self.set_optimizer(0.01)
 
 
-db = MyDB()
-
 gildong = MyRNN()
+
+db = MyDB()
 db.load('data-02-stock_daily.csv', 7) # seq_length
+
 gildong.learn(db.trainX, db.trainY, 100, 10)
 gildong.show_error()
 gildong.predict(db.testX, db.testY)

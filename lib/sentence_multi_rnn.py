@@ -50,7 +50,7 @@ class SentenceMultiRNN:
         # (optional) softmax layer
         X_for_softmax = tf.reshape(outputs, [-1, self.hidden_size])  # hidden_size = 25
         # flatten the tensor(?, 10, 25). [-1, 25] 25 차원 입력이 되도록 하고 나머지는 flatten
-        # print(X_for_softmax) # 따라서 (?, 25)
+        #print(X_for_softmax) # 따라서 (?, 25)
 
         # fully connected된 히든 레이어와 출력 레이어 가중치 25 * 25, 바이어스 25
         softmax_w = tf.get_variable("softmax_w", [self.hidden_size, self.number_of_class])

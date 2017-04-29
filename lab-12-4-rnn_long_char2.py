@@ -2,7 +2,6 @@
 from lib.sentence_multi_rnn import SentenceMultiRNN
 
 
-
 class XXX (SentenceMultiRNN):
 
     def init_network(self):
@@ -27,6 +26,7 @@ gildong = XXX()
 gildong.set_parameters(sent2, 10)
 dataX_, dataY_ = gildong.sentence_to_data(sent2)
 gildong.learn(dataX_, dataY_, 100, 10)
+print(gildong.hidden_size, gildong.number_of_class, gildong.batch_size, gildong.length_of_sequence, )
 gildong.predict(dataX_)
 #gildong.show_error()
 
