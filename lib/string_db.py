@@ -1,7 +1,8 @@
 import numpy as np
 
 
-# 문자열을을 주면 RNN에서 사용할 수 있는 인덱스 리스트,
+# 문자열을 입력받아 RNN에서 학습하는데 필요한 정보와 데이터를 만들어 줌.
+
 class StringDB:
     unique_char_list = []
     unique_char_and_index = []

@@ -49,9 +49,9 @@ class StockRNN:
         last_output = outputs[:, -1]  # 3차원 출력 7개 중 가장 마지막 3차원 출력을 최종 출력으로 선택함. last_output shape=(?, 3)
 
         # Softmax layer (rnn_hidden_size -> num_classes)
-        softmax_w = tf.get_variable("softmax_w", [self.output_dim, 1])
-        softmax_b = tf.get_variable("softmax_b", [1])
-        Y_pred = tf.matmul(last_output,  softmax_w) + softmax_b  # 3 *
+        W = tf.get_variable("softmax_w", [self.output_dim, 1])
+        b = tf.get_variable("softmax_b", [1])
+        Y_pred = tf.matmul(last_output,  W) + b  # 3 *
         #print(Y_pred, last_output, softmax_w)
 
         return Y_pred # (?, 1).. 결국 (1, 7, 5) 데이터가 들어가면 (1, 1) 데이터가 출력됨.

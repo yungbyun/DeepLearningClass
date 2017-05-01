@@ -110,10 +110,10 @@ class XXX:
         writer.add_graph(sess.graph)
         global_step = 0
 
-        sa = NetworkLoader()
-        sa.restore_network(sess, CHECK_POINT_DIR)
+        loader = NetworkLoader()
+        loader.restore_network(sess, CHECK_POINT_DIR)
 
-        for epoch in range(sa.get_starting_epoch(), training_epochs):
+        for epoch in range(loader.get_starting_epoch(), training_epochs):
             print('Start Epoch:', epoch)
 
             avg_cost = 0
@@ -130,7 +130,7 @@ class XXX:
 
             print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
 
-            sa.save_network.save_network(sess, CHECK_POINT_DIR, epoch, global_step)
+            loader.save_network(sess, CHECK_POINT_DIR, epoch, global_step)
 
         print('Learning Finished!')
 

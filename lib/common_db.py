@@ -5,7 +5,7 @@ from abc import abstractmethod
 class CommonDB:
     native_data = []
 
-    # 시계열 데이터를 학습용(70), 테스트용(30)으로 분리
+    # 시계열 데이터를 학습용(70%), 테스트용(30%)으로 분리
     trainX = []
     trainY = []
 
@@ -59,7 +59,7 @@ class CommonDB:
             _x = originalX[i:i + seq_length]
             _y = originalY[i + seq_length - 1]  # Next close price as target
             #print(_x, "->", _y)
-            print(i)
+            #print(i)
             dataX.append(_x)
             dataY.append(_y)
 

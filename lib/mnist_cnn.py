@@ -4,6 +4,7 @@ import lib.mytool as mytool
 import tensorflow as tf
 from lib.myplot import MyPlot
 from lib.cnn import CNN
+from lib.network_loader import NetworkLoader
 
 
 class MnistCNN (CNN):

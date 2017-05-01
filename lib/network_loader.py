@@ -2,13 +2,15 @@ import tensorflow as tf
 import os
 
 '''
-CHECK_POINT_DIR = TB_SUMMARY_DIR = './tb/mnist2'
-sa = Saver()
-sa.restore_network(sess, CHECK_POINT_DIR)
+learn 멤버 함수에서
 
-for epoch in range(sa.get_starting_epoch(), training_epochs):
-    # other codes
-    sa.save(sess, CHECK_POINT_DIR, epoch, global_step)
+    CHECK_POINT_DIR = TB_SUMMARY_DIR = './tb/xxx'
+    sa = NetworkLoader()
+    sa.restore_network(sess, CHECK_POINT_DIR)
+    
+    for epoch in range(sa.get_starting_epoch(), training_epochs):
+        # other codes
+        sa.save(self.sess, CHECK_POINT_DIR, epoch, step)
 '''
 
 

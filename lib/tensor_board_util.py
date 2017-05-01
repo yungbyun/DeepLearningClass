@@ -2,6 +2,23 @@ import tensorflow as tf
 
 '''
 How to use
+    tbutil = TensorBoardUtil()
+    
+    init_network 멤버함수에서
+        tf.summary.histogram("layer", L4)
+        tf.summary.histogram("hypothesis", hypo)
+    
+        self.tbutil.scalar('Loss', self.cost_function)
+        self.tbutil.merge()
+
+    #overriding
+    def create_writer(self):
+        self.tbutil.create_writer(self.sess, './tb/mnist_nn_deep')
+    
+    #overriding
+    def do_summary(self, feed_dict):
+        self.tbutil.do_summary(self.sess, feed_dict)
+        
 1. NeuralNetwork를 상속받는 클래스에서 멤버변수 정의
 2. init_network에서 scalar 등을 호출한 후 마지막에 merge 호출
 3. create_writer 오버로딩 후 여기의 create_writer 호출 (폴더명의 예: './tb/mnist')
@@ -9,6 +26,8 @@ How to use
 
 
 '''
+
+
 class TensorBoardUtil:
     summary = None
     global_step = 0;
