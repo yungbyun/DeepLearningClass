@@ -3,7 +3,7 @@ from abc import abstractmethod
 import lib.mytool as mytool
 
 
-class RNNCore:
+class RNNCore3:
     X = None
     Y = None
 
@@ -45,19 +45,19 @@ class RNNCore:
         self.length_of_sequence = seq_num # x_data, y_data 문자 수
 
     def set_placeholder(self, seq_len, hidden_size):
-        self.X = tf.placeholder(tf.int32, [None, seq_len])  # None, 6, 5
-        self.Y = tf.placeholder(tf.int32, [None, seq_len])  # Y label
+        self.X = tf.placeholder(tf.float32, [None, seq_len, hidden_size])  # None, 12, 10
+        self.Y = tf.placeholder(tf.float32, [None, seq_len, hidden_size])  # None, 12, 10
 
     # 아래 함수는 hypothesis를 정의하므로 learn에서 cost_function, optimizer, predict를 실행하면 결국 이 hypothesis가 실행됨.
-    def rnn_lstm_cell(self, num_classes, hidden_size, batch_size):
+    def rnn_lstm_cell(self, X, num_classes, hidden_size, batch_size):
         # X: [[9, 1, 7, 9, 2, 3, 8, 9, 5, 4, 6, 0, 9, 2, 3]], num_classes: 10
         # X로 입력받는 숫자 각각에 대하여 num_classes 개의 0 중 해당 위치만 1로 만드는 텐서를 리턴함.
-        x_one_hot = tf.one_hot(self.X, num_classes)  # X: 1 -> x_one_hot: 0 1 0 0 0 0 0 0 0 0
+        #x_one_hot = tf.one_hot(X, num_classes)  # X: 1 -> x_one_hot: 0 1 0 0 0 0 0 0 0 0
         #print(x_one_hot) #(1, 15, 10), (1, 6, 5), (1, 12, 10)
 
         cell = tf.contrib.rnn.BasicLSTMCell(num_units=hidden_size, state_is_tuple=True)  # 10
         initial_state = cell.zero_state(batch_size, tf.float32)  # 1
-        hypothesis, _states = tf.nn.dynamic_rnn(cell, x_one_hot, initial_state=initial_state, dtype=tf.float32)
+        hypothesis, _states = tf.nn.dynamic_rnn(cell, self.X, initial_state=initial_state, dtype=tf.float32)
         print(hypothesis)
         # shape = (1, 15, 10) 글자 하나를 의미하는 10차원 출력 벡터 -> 15개 출력됨.
         # shape = (1, 6, 5) 'hihello'
@@ -69,7 +69,6 @@ class RNNCore:
 
     def set_cost_function(self, batch_size, seq_len):
         weights = tf.ones([batch_size, seq_len])
-        #
         self.cost_function = tf.contrib.seq2seq.sequence_loss(logits=self.hypothesis, targets=self.Y, weights=weights)
         # sequence_loss = tf.nn.seq2seq.sequence_loss_by_example(logits=outputs, targets=Y, weights=weights)
 

@@ -5,3 +5,7 @@ rnn2.py
 rnn_basic.py
 rnn_basic-original.py
 layer_test.py
+!/rnn_basic-original.py
+__pycache__/
+lib/__pycache__/rnn_core3.cpython-36.pyc
+lib/__pycache__/string_db3.cpython-36.pyc

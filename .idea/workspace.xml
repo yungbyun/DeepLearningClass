@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57a5ff0b-f433-4a8d-887a-98fddcb7f8cc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lab-12-1-hello-rnn3.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/rnn_core3.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/string_db3.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_rnn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab-13-3-mnist_save_restore2.py" afterPath="$PROJECT_DIR$/lab-13-3-mnist_save_restore2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/common_db.py" afterPath="$PROJECT_DIR$/lib/common_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/mnist_cnn.py" afterPath="$PROJECT_DIR$/lib/mnist_cnn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/network_loader.py" afterPath="$PROJECT_DIR$/lib/network_loader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/stock_rnn.py" afterPath="$PROJECT_DIR$/lib/stock_rnn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/string_db.py" afterPath="$PROJECT_DIR$/lib/string_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tensor_board_util.py" afterPath="$PROJECT_DIR$/lib/tensor_board_util.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" afterPath="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/rnn_core.py" afterPath="$PROJECT_DIR$/lib/rnn_core.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,103 +24,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lab-06-2-softmax_zoo_classifier2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-06-2-softmax_zoo_classifier2.py">
+      <file leaf-file-name="lab-12-1-hello-rnn2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lab-12-1-hello-rnn2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-06-1-softmax_classifier2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-06-1-softmax_classifier2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-05-2-logistic_regression_diabetes.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-05-2-logistic_regression_diabetes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-05-1-logistic_regression2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-05-1-logistic_regression2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-04-4-tf_reader_linear_regression2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-04-4-tf_reader_linear_regression2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-04-3-file_input_linear_regression2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-04-3-file_input_linear_regression2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-13-3-mnist_save_restore2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-13-3-mnist_save_restore2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="132" column="60" lean-forward="false" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="network_loader.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/network_loader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lab-11-1-mnist_cnn2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab-11-1-mnist_cnn2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mnist_cnn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/mnist_cnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="55" column="47" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
+            <state relative-caret-position="418">
+              <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#13#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,6 +64,8 @@
       <find>last</find>
       <find>one</find>
       <find>sequence_length</find>
+      <find>rnn_size</find>
+      <find>batch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,12 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lab-06-2-softmax_zoo_classifier2.py" />
-        <option value="$PROJECT_DIR$/lab-07-4-mnist_introduction2.py" />
-        <option value="$PROJECT_DIR$/lab-09-2-xor-nn2.py" />
-        <option value="$PROJECT_DIR$/lab-09-1-xor2.py" />
-        <option value="$PROJECT_DIR$/lab-09-3-xor-nn-wide-deep2.py" />
-        <option value="$PROJECT_DIR$/lab-10-1-mnist_softmax2.py" />
         <option value="$PROJECT_DIR$/lab-10-2-mnist_nn2.py" />
         <option value="$PROJECT_DIR$/lab-10-3-mnist_nn_xavier2.py" />
         <option value="$PROJECT_DIR$/lab-10-4-mnist_nn_deep2.py" />
@@ -175,7 +81,6 @@
         <option value="$PROJECT_DIR$/lab-02-2-linear_regression_feed2.py" />
         <option value="$PROJECT_DIR$/lib/.gitignore" />
         <option value="$PROJECT_DIR$/lib/myutil.py" />
-        <option value="$PROJECT_DIR$/lab-12-1-hello-rnn3.py" />
         <option value="$PROJECT_DIR$/layer_test.py" />
         <option value="$PROJECT_DIR$/lab-10-5-mnist_nn_dropout2.py" />
         <option value="$PROJECT_DIR$/DeepLearningZeroToAll/lab-13-2-mnist_tensorboard.py" />
@@ -185,7 +90,6 @@
         <option value="$PROJECT_DIR$/lab-02-1-linear_regression2.py" />
         <option value="$PROJECT_DIR$/lab-04-2-multi_variable_matmul_linear_regression2.py" />
         <option value="$PROJECT_DIR$/lab-13-2-mnist_tensorboard2.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/DeepLearningZeroToAll/lab-12-2-char-seq-rnn.py" />
         <option value="$PROJECT_DIR$/lib/sentence_to_index.py" />
@@ -204,21 +108,29 @@
         <option value="$PROJECT_DIR$/lab-12-4-rnn_long_char2.py" />
         <option value="$PROJECT_DIR$/lab-12-5-rnn_stock_prediction2.py" />
         <option value="$PROJECT_DIR$/lib/common_db.py" />
-        <option value="$PROJECT_DIR$/lib/rnn_core.py" />
         <option value="$PROJECT_DIR$/lib/string_db.py" />
-        <option value="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" />
         <option value="$PROJECT_DIR$/data-02-stock_daily.csv" />
         <option value="$PROJECT_DIR$/lib/stock_rnn.py" />
         <option value="$PROJECT_DIR$/lib/tensor_board_util.py" />
         <option value="$PROJECT_DIR$/lab-13-3-mnist_save_restore2.py" />
         <option value="$PROJECT_DIR$/lib/mnist_cnn.py" />
         <option value="$PROJECT_DIR$/lib/network_loader.py" />
+        <option value="$PROJECT_DIR$/lib/string_db2.py" />
+        <option value="$PROJECT_DIR$/lib/string_db3.py" />
+        <option value="$PROJECT_DIR$/lab-12-1-hello-rnn3.py" />
+        <option value="$PROJECT_DIR$/lib/rnn_core3.py" />
+        <option value="$PROJECT_DIR$/lib/rnn_core.py" />
+        <option value="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" />
+        <option value="$PROJECT_DIR$/my_rnn.py" />
+        <option value="$PROJECT_DIR$/rnn_basic-original.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/rnn2.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="303" />
-    <option name="y" value="62" />
+    <option name="x" value="219" />
+    <option name="y" value="23" />
     <option name="width" value="1957" />
     <option name="height" value="1433" />
   </component>
@@ -285,20 +197,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="add_unversioned_files" value="true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/rnn2.py&#10;true&#10;/Users/iclab/DeepLearningLib/rnn_basic-original.py" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/DeepLearningZeroToAll" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/lib" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/DeepLearningZeroToAll" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -313,8 +225,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lab-11-1-mnist_cnn2">
-    <configuration default="false" name="lab-12-5-rnn_stock_prediction2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.lab-12-1-hello-rnn2">
+    <configuration default="false" name="rnn" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -326,13 +238,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DeepLearningLib" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-12-5-rnn_stock_prediction2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rnn.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="lab-12-6-rnn_softmax_stock_prediction2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="rnn_basic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -344,13 +256,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DeepLearningLib" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-12-6-rnn_softmax_stock_prediction2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rnn_basic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="lab-06-2-softmax_zoo_classifier2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="rnn_basic-original" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -362,13 +274,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DeepLearningLib" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-06-2-softmax_zoo_classifier2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rnn_basic-original.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="lab-13-3-mnist_save_restore2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="rnn2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -380,13 +292,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DeepLearningLib" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-13-3-mnist_save_restore2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rnn2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="lab-11-1-mnist_cnn2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="lab-12-1-hello-rnn2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -398,7 +310,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DeepLearningLib" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-11-1-mnist_cnn2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-12-1-hello-rnn2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -469,19 +381,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.lab-12-5-rnn_stock_prediction2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.lab-12-6-rnn_softmax_stock_prediction2" />
-      <item index="2" class="java.lang.String" itemvalue="Python.lab-06-2-softmax_zoo_classifier2" />
-      <item index="3" class="java.lang.String" itemvalue="Python.lab-13-3-mnist_save_restore2" />
-      <item index="4" class="java.lang.String" itemvalue="Python.lab-11-1-mnist_cnn2" />
+      <item index="0" class="java.lang.String" itemvalue="Python.rnn" />
+      <item index="1" class="java.lang.String" itemvalue="Python.rnn_basic" />
+      <item index="2" class="java.lang.String" itemvalue="Python.rnn_basic-original" />
+      <item index="3" class="java.lang.String" itemvalue="Python.rnn2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.lab-12-1-hello-rnn2" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.lab-11-1-mnist_cnn2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.lab-13-3-mnist_save_restore2" />
-        <item index="2" class="java.lang.String" itemvalue="Python.lab-06-2-softmax_zoo_classifier2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.lab-12-6-rnn_softmax_stock_prediction2" />
-        <item index="4" class="java.lang.String" itemvalue="Python.lab-12-5-rnn_stock_prediction2" />
+        <item index="0" class="java.lang.String" itemvalue="Python.lab-12-1-hello-rnn2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.rnn2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.rnn_basic-original" />
+        <item index="3" class="java.lang.String" itemvalue="Python.rnn_basic" />
+        <item index="4" class="java.lang.String" itemvalue="Python.rnn" />
       </list>
     </recent_temporary>
   </component>
@@ -511,13 +423,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="303" y="62" width="1957" height="1433" extended-state="0" />
+    <frame x="219" y="23" width="1957" height="1433" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13081247" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21410322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25293255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2866569" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -533,26 +445,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2860781" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2435265" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39728352" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -571,167 +463,52 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lab-12-1-hello-rnn2.py</url>
+          <url>file://$PROJECT_DIR$/lab-12-1-hello-rnn3.py</url>
           <line>12</line>
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lib/rnn_core3.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lab-12-1-hello-rnn2.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rnn_basic-original.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rnn2.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="22" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="44" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="cell" />
+        <watch expression="cell" />
+        <watch expression="cell" />
+        <watch expression="cell" />
+        <watch expression="cell" />
+        <watch expression="x_split" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/python/ops/rnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="488" column="0" lean-forward="false" selection-start-line="488" selection-start-column="0" selection-end-line="488" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/numpy/core/fromnumeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="2320" column="4" lean-forward="true" selection-start-line="2320" selection-start-column="4" selection-end-line="2320" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/mytool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/neural_network_simple1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DeepLearningZeroToAll/lab-13-3-mnist_save_restore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab-13-3-mnist_save_restore2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DeepLearningZeroToAll/lab-13-3-mnist_save_restore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/neural_network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/sentence_to_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/rnn_core2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="45" column="47" lean-forward="false" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/sentence_multi_rnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="69" column="36" lean-forward="false" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="435" column="0" lean-forward="false" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/contrib/seq2seq/python/ops/loss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/Cellar/python3/3.6.0_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/string_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/softmax_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/rnn_core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="66" column="29" lean-forward="true" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data-02-stock_daily.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/stock_rnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1191">
-          <caret line="78" column="22" lean-forward="false" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -784,16 +561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lab-12-5-rnn_stock_prediction2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab-12-4-rnn_long_char2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -807,16 +574,6 @@
         <state relative-caret-position="484">
           <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab-12-1-hello-rnn2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="18" />
-          <folding>
-            <element signature="e#13#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,14 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab-10-1-mnist_softmax2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -964,10 +713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lab-11-1-mnist_cnn2.py">
+    <entry file="file://$PROJECT_DIR$/lib/network_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="19" />
+        <state relative-caret-position="84">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -977,16 +726,213 @@
         <state relative-caret-position="565">
           <caret line="55" column="47" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/network_loader.py">
+    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        <state relative-caret-position="2750">
+          <caret line="752" column="27" lean-forward="false" selection-start-line="752" selection-start-column="27" selection-end-line="752" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python3/3.6.0_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="306" column="7" lean-forward="true" selection-start-line="306" selection-start-column="7" selection-end-line="306" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/rnn_core3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/string_db3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab-10-1-mnist_softmax2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/neural_network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="286" column="0" lean-forward="true" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/mnist_neural_network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab-12-1-hello-rnn3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#13#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="1028" column="0" lean-forward="false" selection-start-line="1028" selection-start-column="0" selection-end-line="1028" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab-12-5-rnn_stock_prediction2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/stock_rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1550">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/rnn_core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rnn2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-517">
+          <caret line="48" column="27" lean-forward="true" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layer_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rnn_basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3">
+          <caret line="176" column="28" lean-forward="true" selection-start-line="176" selection-start-column="28" selection-end-line="176" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rnn_basic-original.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab-11-1-mnist_cnn2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="29" column="42" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab-12-1-hello-rnn2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding>
+            <element signature="e#13#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
