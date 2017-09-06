@@ -35,27 +35,27 @@ class SentenceMultiRNN:
         self.Y = tf.placeholder(tf.int32, [None, seq_len])
 
     def create_multi_rnn_layer(self):
-        # create_multi_rnn_layer()
-        # One-hot encoding. X: x_data = length_of_sequence 길이의 문자열: 현재로는 10
-        X_one_hot = tf.one_hot(self.X, self.number_of_class)  # X_one_hot shape=(?, 10, 25)
 
-        # Make a lstm cell with hidden_size (each unit output vector size)
+        # X: (?, 10) -> one_hot with 65 class -> (?, 10, 65) '내가 만일..'
+        X_one_hot = tf.one_hot(self.X, self.number_of_class)  # X_one_hot shape=(?, 10, 65)
+
+        # Make a lstm cell with hidden_size
         cell = rnn.BasicLSTMCell(self.hidden_size, state_is_tuple=True)
         cell = rnn.MultiRNNCell([cell] * 2, state_is_tuple=True)
 
-        # outputs: unfolding size x hidden size, state = hidden size
-        outputs, _states = tf.nn.dynamic_rnn(cell, X_one_hot, dtype=tf.float32)
-        # print(outputs) # shape=(?, 10, 25)
+        # outputs: unfolding size x hidden size
+        outputs, _states = tf.nn.dynamic_rnn(cell, X_one_hot, dtype=tf.float32) #outputs : (?, 10, 65)
+        # print(outputs) # shape=(?, 10, 65)
 
         # (optional) softmax layer
-        X_for_softmax = tf.reshape(outputs, [-1, self.hidden_size])  # hidden_size = 25
-        # flatten the tensor(?, 10, 25). [-1, 25] 25 차원 입력이 되도록 하고 나머지는 flatten
-        #print(X_for_softmax) # 따라서 (?, 25)
+        reshaped_output = tf.reshape(outputs, [-1, self.hidden_size])  # hidden_size = 65
+        # flatten the tensor(?, 10, 65). [-1, 65] 65 차원 입력이 10개가 다시 []로 묶여 있었는데 이 []를 제거
+        #print(X_for_softmax) # 따라서 (?, 10, 65) -> (?, 65)
 
-        # fully connected된 히든 레이어와 출력 레이어 가중치 25 * 25, 바이어스 25
-        softmax_w = tf.get_variable("softmax_w", [self.hidden_size, self.number_of_class])
-        softmax_b = tf.get_variable("softmax_b", [self.number_of_class])
-        hypothesis = tf.matmul(X_for_softmax, softmax_w) + softmax_b
+        # fully connected된 히든 레이어와 출력 레이어 가중치 65 * 65, 바이어스 65
+        W = tf.get_variable("softmax_w", [self.hidden_size, self.number_of_class])
+        b = tf.get_variable("softmax_b", [self.number_of_class])
+        hypothesis = tf.matmul(reshaped_output, W) + b
 
         # reshape outputs for sequence_loss
         hypothesis_reshaped = tf.reshape(hypothesis, [self.batch_size, self.length_of_sequence, self.number_of_class])
@@ -80,7 +80,7 @@ class SentenceMultiRNN:
         num = self.tool.unique_char_num()
 
         self.hidden_size = num
-        self.number_of_class = num # 25
+        self.number_of_class = num # 65
         self.length_of_sequence = len_of_seq  # Any arbitrary number-> 앞의 예제에서는 x_data, ydata 문자 수(전체 문장 - 1)
         repeat_time = len(s) - self.length_of_sequence  # 전체길이: 180, seq_length: 10
         self.batch_size = repeat_time

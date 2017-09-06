@@ -47,28 +47,6 @@ class RNNCore2:
         # shape = (1, 15, 10) 글자 하나를 의미하는 출력 벡터가 15개 출력됨.
         return hypothesis
 
-        '''
-        oh = tf.one_hot([[9, 1, 7, 9, 2, 3, 8, 9, 5, 4, 6, 0, 9, 2, 3]], 10)
-
-        x_data : ' if you  want yo'
-        x_one_hot : 
-        [[[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  1.] <- ' '
-          [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.] <- i 
-          [ 0.  0.  0.  0.  0.  0.  0.  1.  0.  0.] <- f
-          [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  1.] <- ' '
-          [ 0.  0.  1.  0.  0.  0.  0.  0.  0.  0.] <- y
-          [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.] <- o 
-          [ 0.  0.  0.  0.  0.  0.  0.  0.  1.  0.] <- u 
-          [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  1.] <- ' '
-          [ 0.  0.  0.  0.  0.  1.  0.  0.  0.  0.] <- w 
-          [ 0.  0.  0.  0.  1.  0.  0.  0.  0.  0.] <- a
-          [ 0.  0.  0.  0.  0.  0.  1.  0.  0.  0.] <- n 
-          [ 1.  0.  0.  0.  0.  0.  0.  0.  0.  0.] <- t
-          [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  1.] <- ' '
-          [ 0.  0.  1.  0.  0.  0.  0.  0.  0.  0.] <- y
-          [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.]]] <- o
-        '''
-
     def set_cost_function(self, batch_size, seq_len):
         weights = tf.ones([batch_size, seq_len])  # shape = (1, 15)
         sequence_loss = tf.contrib.seq2seq.sequence_loss(logits=self.hypothesis, targets=self.Y, weights=weights)

@@ -69,6 +69,6 @@ class CommonDB:
         self.trainX, self.testX = np.array(dataX[0:train_size]), np.array(dataX[train_size:len(dataX)])
         self.trainY, self.testY = np.array(dataY[0:train_size]), np.array(dataY[train_size:len(dataY)])
 
-        print('trainX: {} to {}'.format(0, train_size))
-        print('trainY: {} to {}'.format(0, train_size))
+        print('train: {} to {}'.format(0, train_size))
+        print('test: {} to {}'.format(0, test_size))
 

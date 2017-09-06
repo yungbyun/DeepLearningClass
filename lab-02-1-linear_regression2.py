@@ -5,7 +5,7 @@ class MyNeuron (NeuralNetworkSimple1):
     def init_network(self):
 
         # 1 to 1
-        hypo = self.fully_connected_layer(1, 1, 'W', 'b')
+        hypo = self.perceptron(1, 1, 'W', 'b') # hypo = W*x + b
 
         self.set_hypothesis(hypo)
         self.set_cost_function()

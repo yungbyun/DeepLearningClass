@@ -43,7 +43,7 @@ class NetworkLoader:
         return self.start_from
 
     def save_network(self, sess, dir, epoch, step):
-        print("Saving network...")
+        print("Saving network.")
         sess.run(self.last_location.assign(epoch + 1))
         # 폴더가 없으면 만들어서, 있으면 있는 폴더에 저장
         if not os.path.exists(dir):

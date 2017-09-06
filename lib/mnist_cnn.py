@@ -17,6 +17,7 @@ class MnistCNN (CNN):
 
     @abstractmethod
     def my_log(self, i, xdata, ydata):
+        # 조용히 오류값을 구하고 로그에 추가하기만 함.
         err = self.sess.run(self.cost_function, feed_dict={self.X: xdata, self.Y: ydata})
         msg = "Step:{}, Error:{:.6f}".format(i, err)
         self.logs.append(msg)
@@ -38,9 +39,13 @@ class MnistCNN (CNN):
         # Initialize TensorFlow variables
         self.sess.run(tf.global_variables_initializer())
 
+        loader = NetworkLoader()
+        CHECK_POINT_DIR = './tb/mnist'
+        loader.restore_network(self.sess, CHECK_POINT_DIR)
+
         print("\nStart learning:")
         # Training cycle
-        for epoch in range(learning_epoch):
+        for epoch in range(loader.get_starting_epoch(), learning_epoch):
             err_4_all_data = 0
             number_of_segment = self.get_number_of_segment()  # 가상함수
 
@@ -61,6 +66,7 @@ class MnistCNN (CNN):
             self.costs.append(avg_err)
 
             self.my_log(epoch, x_data, y_data)  # 가상함수
+            loader.save_network(self.sess, CHECK_POINT_DIR, epoch, epoch)
 
         print("\nDone!\n")
 

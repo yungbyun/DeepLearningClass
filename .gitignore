@@ -9,3 +9,4 @@ layer_test.py
 __pycache__/
 lib/__pycache__/rnn_core3.cpython-36.pyc
 lib/__pycache__/string_db3.cpython-36.pyc
+!/rnn_basic.py

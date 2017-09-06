@@ -21,7 +21,6 @@ class XXX:
 
         CHECK_POINT_DIR = TB_SUMMARY_DIR = './tb/mnist2'
 
-
         # input place holders
         X = tf.placeholder(tf.float32, [None, 784])
         Y = tf.placeholder(tf.float32, [None, 10])

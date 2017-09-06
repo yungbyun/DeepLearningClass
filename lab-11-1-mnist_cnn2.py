@@ -27,10 +27,10 @@ class XXX (MnistCNN):
 
 
 gildong = XXX()
-gildong.learn_mnist(15, 100)
+gildong.learn_mnist(100, 100)
 gildong.evaluate()
 gildong.classify_random()
-gildong.show_error()
+#gildong.show_error()
 
 '''
 Epoch: 0001 cost = 0.347524221

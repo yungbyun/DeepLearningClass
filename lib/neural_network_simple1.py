@@ -18,7 +18,7 @@ class NeuralNetworkSimple1:
         self.x_data = xdata
         self.y_data = ydata
 
-    def fully_connected_layer(self, input_num, output_num, w_name, b_name):
+    def perceptron(self, input_num, output_num, w_name, b_name):
         W = tf.Variable(tf.random_normal([input_num]), name=w_name)
         b = tf.Variable(tf.random_normal([output_num]), name=b_name)
         output = self.x_data * W + b
